@@ -124,13 +124,13 @@ export default function Contact() {
               <div className="mt-8 pt-6 border-t border-charcoal-700">
                 <p className="text-sm text-charcoal-400 mb-3">Follow us on social media</p>
                 <a
-                  href="https://instagram.com/turf_360"
+                  href="https://www.instagram.com/turf__360/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-white hover:text-turf-400 transition-colors"
                 >
                   <Instagram size={20} />
-                  <span>@turf_360</span>
+                  <span>@turf__360</span>
                 </a>
               </div>
             </div>

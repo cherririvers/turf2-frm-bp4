@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { X, ChevronLeft, ChevronRight, Play } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Play, Instagram, ExternalLink } from 'lucide-react';
 import PageHero from '../components/PageHero';
 
 type GalleryItem = {
@@ -222,6 +222,31 @@ export default function GalleryPage() {
           </div>
         </div>
       )}
+
+      <section className="py-12 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500">
+        <div className="section-container">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex items-center gap-4">
+              <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center">
+                <Instagram size={32} className="text-pink-500" />
+              </div>
+              <div className="text-white">
+                <h3 className="font-display text-2xl font-bold">Follow Us on Instagram</h3>
+                <p className="text-white/80">Daily highlights, match moments, and exclusive content</p>
+              </div>
+            </div>
+            <a
+              href="https://www.instagram.com/turf__360/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 bg-white hover:bg-charcoal-100 text-charcoal-900 font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:shadow-xl"
+            >
+              <span>@turf__360</span>
+              <ExternalLink size={18} />
+            </a>
+          </div>
+        </div>
+      </section>
 
       <section className="py-16 bg-turf-600">
         <div className="section-container text-center">

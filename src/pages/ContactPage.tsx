@@ -47,8 +47,8 @@ const contactMethods = [
   {
     icon: Instagram,
     title: 'Instagram',
-    value: '@turf_360',
-    link: 'https://instagram.com/turf_360',
+    value: '@turf__360',
+    link: 'https://www.instagram.com/turf__360/',
     description: 'DM us for quick response',
   },
 ];

@@ -40,13 +40,13 @@ export default function Footer() {
               Snooker on artificial turf with floodlights.
             </p>
             <a
-              href="https://instagram.com/turf_360"
+              href="https://www.instagram.com/turf__360/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-charcoal-400 hover:text-turf-400 transition-colors"
             >
               <Instagram size={20} />
-              <span>@turf_360</span>
+              <span>@turf__360</span>
             </a>
           </div>
 
