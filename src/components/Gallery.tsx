@@ -3,33 +3,33 @@ import { ArrowRight } from 'lucide-react';
 
 const galleryImages = [
   {
-    src: 'https://images.pexels.com/photos/274506/pexels-photo-274506.jpeg?auto=compress&cs=tinysrgb&w=800',
-    alt: 'Football turf at night',
+    src: '/gallery/cric1.jpeg',
+    alt: 'Cricket facility',
     span: 'col-span-2 row-span-2',
   },
   {
-    src: 'https://images.pexels.com/photos/3621104/pexels-photo-3621104.jpeg?auto=compress&cs=tinysrgb&w=800',
-    alt: 'Players on the field',
-    span: 'col-span-1 row-span-1',
-  },
-  {
-    src: 'https://images.pexels.com/photos/2291006/pexels-photo-2291006.jpeg?auto=compress&cs=tinysrgb&w=800',
-    alt: 'Team celebration',
-    span: 'col-span-1 row-span-1',
-  },
-  {
-    src: 'https://images.pexels.com/photos/3628912/pexels-photo-3628912.jpeg?auto=compress&cs=tinysrgb&w=800',
-    alt: 'Cricket match',
-    span: 'col-span-1 row-span-1',
-  },
-  {
-    src: 'https://images.pexels.com/photos/8224064/pexels-photo-8224064.jpeg?auto=compress&cs=tinysrgb&w=800',
+    src: '/gallery/pickleball1.jpeg',
     alt: 'Pickleball court',
     span: 'col-span-1 row-span-1',
   },
   {
-    src: 'https://images.pexels.com/photos/3991976/pexels-photo-3991976.jpeg?auto=compress&cs=tinysrgb&w=800',
-    alt: 'Sports facility',
+    src: '/gallery/events1.jpeg',
+    alt: 'Team celebration',
+    span: 'col-span-1 row-span-1',
+  },
+  {
+    src: '/football.jpg',
+    alt: 'Football turf',
+    span: 'col-span-1 row-span-1',
+  },
+  {
+    src: '/gallery/snooker2.jpg',
+    alt: 'Snooker room',
+    span: 'col-span-1 row-span-1',
+  },
+  {
+    src: '/gallery/cafe1.jpeg',
+    alt: 'Cafe & lounge',
     span: 'col-span-2 row-span-1',
   },
 ];
