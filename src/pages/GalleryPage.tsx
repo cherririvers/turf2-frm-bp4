@@ -1,75 +1,94 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Play } from 'lucide-react';
 import PageHero from '../components/PageHero';
 
-const galleryImages = [
-  { src: '/football.jpg', alt: 'Football turf', category: 'Football' },
-  { src: 'https://images.pexels.com/photos/274506/pexels-photo-274506.jpeg?auto=compress&cs=tinysrgb&w=1200', alt: 'Football turf at night', category: 'Football' },
-  { src: 'https://images.pexels.com/photos/3621104/pexels-photo-3621104.jpeg?auto=compress&cs=tinysrgb&w=1200', alt: 'Players on the field', category: 'Football' },
-  { src: 'https://images.pexels.com/photos/47730/the-ball-stadion-football-the-pitch-47730.jpeg?auto=compress&cs=tinysrgb&w=1200', alt: 'Football on turf', category: 'Football' },
-  { src: '/gallery/football1.avif', alt: 'Football match action', category: 'Football' },
-  { src: '/gallery/football2.webp', alt: 'Football field view', category: 'Football' },
-  { src: '/gallery/football3.webp', alt: 'Football players', category: 'Football' },
-  { src: '/gallery/football4.png', alt: 'Football game highlights', category: 'Football' },
-  { src: '/cricket.jpeg', alt: 'Cricket pitch', category: 'Cricket' },
-  { src: '/pickleball.jpeg', alt: 'Pickleball courts', category: 'Pickleball' },
-  { src: '/snooker.webp', alt: 'Snooker table', category: 'Snooker' },
-  { src: '/gallery/sonnker1.jpeg', alt: 'Snooker room', category: 'Snooker' },
-  { src: '/gallery/snooker2.jpg', alt: 'Snooker game', category: 'Snooker' },
-  { src: '/gallery/snooker3.webp', alt: 'Snooker table close-up', category: 'Snooker' },
-  { src: '/corporate-banner.jpeg', alt: 'Corporate event', category: 'Events' },
-  { src: '/gallery/cric1.jpeg', alt: 'Cricket action shot', category: 'Cricket' },
-  { src: '/gallery/cric2.jpeg', alt: 'Cricket match', category: 'Cricket' },
-  { src: '/gallery/cric3.jpeg', alt: 'Cricket players', category: 'Cricket' },
-  { src: '/gallery/cric4.jpeg', alt: 'Cricket game', category: 'Cricket' },
-  { src: '/gallery/cric5.jpeg', alt: 'Cricket tournament', category: 'Cricket' },
-  { src: '/gallery/cri6.jpeg', alt: 'Cricket facility', category: 'Cricket' },
-  { src: '/gallery/pickleball1.jpeg', alt: 'Pickleball match', category: 'Pickleball' },
-  { src: '/gallery/pickleball2.jpeg', alt: 'Pickleball players', category: 'Pickleball' },
-  { src: '/gallery/pickleball3.jpeg', alt: 'Pickleball game', category: 'Pickleball' },
-  { src: '/gallery/pickleball4.jpeg', alt: 'Pickleball court action', category: 'Pickleball' },
-  { src: '/gallery/events1.jpeg', alt: 'Event celebration', category: 'Events' },
-  { src: '/gallery/events2.jpeg', alt: 'Team gathering', category: 'Events' },
-  { src: '/gallery/events3.jpeg', alt: 'Sports event', category: 'Events' },
-  { src: '/gallery/events4.jpeg', alt: 'Tournament ceremony', category: 'Events' },
-  { src: '/gallery/events5.jpeg', alt: 'Group photo', category: 'Events' },
-  { src: '/gallery/events6.jpeg', alt: 'Award ceremony', category: 'Events' },
-  { src: '/gallery/events7.jpeg', alt: 'Event highlights', category: 'Events' },
-  { src: '/gallery/cafe1.jpeg', alt: 'Cafe ambiance', category: 'Cafe' },
-  { src: '/gallery/cafe2.jpeg', alt: 'Cafe seating', category: 'Cafe' },
-  { src: '/gallery/cafe3.jpeg', alt: 'Cafe interior', category: 'Cafe' },
-  { src: '/gallery/cafe4.jpeg', alt: 'Food and beverages', category: 'Cafe' },
-  { src: '/gallery/cafe5.jpeg', alt: 'Cafe lounge', category: 'Cafe' },
-  { src: '/gallery/cafe6.jpeg', alt: 'Refreshments area', category: 'Cafe' },
+type GalleryItem = {
+  src: string;
+  alt: string;
+  category: string;
+  type: 'image' | 'video';
+};
+
+const galleryItems: GalleryItem[] = [
+  { src: '/football.jpg', alt: 'Football turf', category: 'Football', type: 'image' },
+  { src: 'https://images.pexels.com/photos/274506/pexels-photo-274506.jpeg?auto=compress&cs=tinysrgb&w=1200', alt: 'Football turf at night', category: 'Football', type: 'image' },
+  { src: 'https://images.pexels.com/photos/3621104/pexels-photo-3621104.jpeg?auto=compress&cs=tinysrgb&w=1200', alt: 'Players on the field', category: 'Football', type: 'image' },
+  { src: 'https://images.pexels.com/photos/47730/the-ball-stadion-football-the-pitch-47730.jpeg?auto=compress&cs=tinysrgb&w=1200', alt: 'Football on turf', category: 'Football', type: 'image' },
+  { src: '/gallery/football1.avif', alt: 'Football match action', category: 'Football', type: 'image' },
+  { src: '/gallery/football2.webp', alt: 'Football field view', category: 'Football', type: 'image' },
+  { src: '/gallery/football3.webp', alt: 'Football players', category: 'Football', type: 'image' },
+  { src: '/gallery/football4.png', alt: 'Football game highlights', category: 'Football', type: 'image' },
+  { src: '/cricket.jpeg', alt: 'Cricket pitch', category: 'Cricket', type: 'image' },
+  { src: '/gallery/cric1.jpeg', alt: 'Cricket action shot', category: 'Cricket', type: 'image' },
+  { src: '/gallery/cric2.jpeg', alt: 'Cricket match', category: 'Cricket', type: 'image' },
+  { src: '/gallery/cric3.jpeg', alt: 'Cricket players', category: 'Cricket', type: 'image' },
+  { src: '/gallery/cric4.jpeg', alt: 'Cricket game', category: 'Cricket', type: 'image' },
+  { src: '/gallery/cric5.jpeg', alt: 'Cricket tournament', category: 'Cricket', type: 'image' },
+  { src: '/gallery/cri6.jpeg', alt: 'Cricket facility', category: 'Cricket', type: 'image' },
+  { src: '/gallery/cric-vid1.mp4', alt: 'Cricket highlights', category: 'Cricket', type: 'video' },
+  { src: '/gallery/cric-vid2.mp4', alt: 'Cricket match footage', category: 'Cricket', type: 'video' },
+  { src: '/gallery/cric-vid3.mp4', alt: 'Cricket practice session', category: 'Cricket', type: 'video' },
+  { src: '/gallery/cric-vid4.mp4', alt: 'Cricket game clip', category: 'Cricket', type: 'video' },
+  { src: '/gallery/cric-vid5.mp4', alt: 'Cricket tournament video', category: 'Cricket', type: 'video' },
+  { src: '/gallery/cric-vid6.mp4', alt: 'Cricket action video', category: 'Cricket', type: 'video' },
+  { src: '/pickleball.jpeg', alt: 'Pickleball courts', category: 'Pickleball', type: 'image' },
+  { src: '/gallery/pickleball1.jpeg', alt: 'Pickleball match', category: 'Pickleball', type: 'image' },
+  { src: '/gallery/pickleball2.jpeg', alt: 'Pickleball players', category: 'Pickleball', type: 'image' },
+  { src: '/gallery/pickleball3.jpeg', alt: 'Pickleball game', category: 'Pickleball', type: 'image' },
+  { src: '/gallery/pickleball4.jpeg', alt: 'Pickleball court action', category: 'Pickleball', type: 'image' },
+  { src: '/gallery/pickleball-vid1.mp4', alt: 'Pickleball highlights', category: 'Pickleball', type: 'video' },
+  { src: '/gallery/pickleball-vid2.mp4', alt: 'Pickleball match video', category: 'Pickleball', type: 'video' },
+  { src: '/gallery/pickleball-vid3.mp4', alt: 'Pickleball game clip', category: 'Pickleball', type: 'video' },
+  { src: '/snooker.webp', alt: 'Snooker table', category: 'Snooker', type: 'image' },
+  { src: '/gallery/sonnker1.jpeg', alt: 'Snooker room', category: 'Snooker', type: 'image' },
+  { src: '/gallery/snooker2.jpg', alt: 'Snooker game', category: 'Snooker', type: 'image' },
+  { src: '/gallery/snooker3.webp', alt: 'Snooker table close-up', category: 'Snooker', type: 'image' },
+  { src: '/corporate-banner.jpeg', alt: 'Corporate event', category: 'Events', type: 'image' },
+  { src: '/gallery/events1.jpeg', alt: 'Event celebration', category: 'Events', type: 'image' },
+  { src: '/gallery/events2.jpeg', alt: 'Team gathering', category: 'Events', type: 'image' },
+  { src: '/gallery/events3.jpeg', alt: 'Sports event', category: 'Events', type: 'image' },
+  { src: '/gallery/events4.jpeg', alt: 'Tournament ceremony', category: 'Events', type: 'image' },
+  { src: '/gallery/events5.jpeg', alt: 'Group photo', category: 'Events', type: 'image' },
+  { src: '/gallery/events6.jpeg', alt: 'Award ceremony', category: 'Events', type: 'image' },
+  { src: '/gallery/events7.jpeg', alt: 'Event highlights', category: 'Events', type: 'image' },
+  { src: '/gallery/cafe1.jpeg', alt: 'Cafe ambiance', category: 'Cafe', type: 'image' },
+  { src: '/gallery/cafe2.jpeg', alt: 'Cafe seating', category: 'Cafe', type: 'image' },
+  { src: '/gallery/cafe3.jpeg', alt: 'Cafe interior', category: 'Cafe', type: 'image' },
+  { src: '/gallery/cafe4.jpeg', alt: 'Food and beverages', category: 'Cafe', type: 'image' },
+  { src: '/gallery/cafe5.jpeg', alt: 'Cafe lounge', category: 'Cafe', type: 'image' },
+  { src: '/gallery/cafe6.jpeg', alt: 'Refreshments area', category: 'Cafe', type: 'image' },
+  { src: '/gallery/cafe-vid1.mp4', alt: 'Cafe tour', category: 'Cafe', type: 'video' },
+  { src: '/gallery/cafe-vid2.mp4', alt: 'Cafe atmosphere', category: 'Cafe', type: 'video' },
+  { src: '/gallery/cafe-vid3.mp4', alt: 'Cafe experience', category: 'Cafe', type: 'video' },
 ];
 
 const categories = ['All', 'Cricket', 'Pickleball', 'Football', 'Snooker', 'Events', 'Cafe'];
 
 export default function GalleryPage() {
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const [lightboxImage, setLightboxImage] = useState<number | null>(null);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  const filteredImages =
+  const filteredItems =
     selectedCategory === 'All'
-      ? galleryImages
-      : galleryImages.filter((img) => img.category === selectedCategory);
+      ? galleryItems
+      : galleryItems.filter((item) => item.category === selectedCategory);
 
   const openLightbox = (index: number) => {
-    setLightboxImage(index);
+    setLightboxIndex(index);
   };
 
   const closeLightbox = () => {
-    setLightboxImage(null);
+    setLightboxIndex(null);
   };
 
   const navigateLightbox = (direction: 'prev' | 'next') => {
-    if (lightboxImage === null) return;
+    if (lightboxIndex === null) return;
     const newIndex =
       direction === 'next'
-        ? (lightboxImage + 1) % filteredImages.length
-        : (lightboxImage - 1 + filteredImages.length) % filteredImages.length;
-    setLightboxImage(newIndex);
+        ? (lightboxIndex + 1) % filteredItems.length
+        : (lightboxIndex - 1 + filteredItems.length) % filteredItems.length;
+    setLightboxIndex(newIndex);
   };
 
   return (
@@ -99,21 +118,38 @@ export default function GalleryPage() {
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredImages.map((image, index) => (
+            {filteredItems.map((item, index) => (
               <div
                 key={index}
                 className="relative rounded-xl overflow-hidden cursor-pointer group aspect-[4/3]"
                 onClick={() => openLightbox(index)}
               >
-                <img
-                  src={image.src}
-                  alt={image.alt}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
+                {item.type === 'video' ? (
+                  <>
+                    <video
+                      src={item.src}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      muted
+                      playsInline
+                      preload="metadata"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-14 h-14 bg-white/90 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                        <Play className="w-6 h-6 text-turf-600 ml-1" fill="currentColor" />
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-charcoal-900/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                  <p className="text-white font-medium">{image.alt}</p>
-                  <span className="text-sm text-turf-300">{image.category}</span>
+                  <p className="text-white font-medium">{item.alt}</p>
+                  <span className="text-sm text-turf-300">{item.category}</span>
                 </div>
               </div>
             ))}
@@ -121,7 +157,7 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      {lightboxImage !== null && (
+      {lightboxIndex !== null && (
         <div
           className="fixed inset-0 z-50 bg-charcoal-950/95 flex items-center justify-center p-4"
           onClick={closeLightbox}
@@ -140,7 +176,7 @@ export default function GalleryPage() {
               e.stopPropagation();
               navigateLightbox('prev');
             }}
-            aria-label="Previous image"
+            aria-label="Previous"
           >
             <ChevronLeft size={32} />
           </button>
@@ -151,7 +187,7 @@ export default function GalleryPage() {
               e.stopPropagation();
               navigateLightbox('next');
             }}
-            aria-label="Next image"
+            aria-label="Next"
           >
             <ChevronRight size={32} />
           </button>
@@ -160,17 +196,27 @@ export default function GalleryPage() {
             className="max-w-5xl max-h-[85vh] w-full"
             onClick={(e) => e.stopPropagation()}
           >
-            <img
-              src={filteredImages[lightboxImage].src}
-              alt={filteredImages[lightboxImage].alt}
-              className="w-full h-full object-contain rounded-lg"
-            />
+            {filteredItems[lightboxIndex].type === 'video' ? (
+              <video
+                src={filteredItems[lightboxIndex].src}
+                className="w-full h-full max-h-[75vh] object-contain rounded-lg"
+                controls
+                autoPlay
+                playsInline
+              />
+            ) : (
+              <img
+                src={filteredItems[lightboxIndex].src}
+                alt={filteredItems[lightboxIndex].alt}
+                className="w-full h-full object-contain rounded-lg"
+              />
+            )}
             <div className="text-center mt-4">
               <p className="text-white text-lg font-medium">
-                {filteredImages[lightboxImage].alt}
+                {filteredItems[lightboxIndex].alt}
               </p>
               <p className="text-charcoal-400 text-sm">
-                {lightboxImage + 1} / {filteredImages.length}
+                {lightboxIndex + 1} / {filteredItems.length}
               </p>
             </div>
           </div>
