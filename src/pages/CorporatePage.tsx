@@ -74,7 +74,7 @@ export default function CorporatePage() {
       <PageHero
         title="Corporate Packages"
         subtitle="Transform your corporate events into unforgettable celebrations of success"
-        backgroundImage="https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=1920"
+        backgroundImage="/corporate-banner.jpeg"
       />
 
       <section className="py-16 bg-white">
