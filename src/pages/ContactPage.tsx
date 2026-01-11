@@ -26,15 +26,15 @@ const contactMethods = [
   {
     icon: Phone,
     title: 'Call Us',
-    value: '+91 99999 99999',
-    link: 'tel:+919999999999',
+    value: '+91-8076714176',
+    link: 'tel:+918076714176',
     description: 'Speak directly with our team',
   },
   {
     icon: MessageCircle,
     title: 'WhatsApp',
-    value: '+91 99999 99999',
-    link: 'https://wa.me/919999999999',
+    value: '+91-8076714176',
+    link: 'https://wa.me/918076714176',
     description: 'Quick chat for bookings',
   },
   {
