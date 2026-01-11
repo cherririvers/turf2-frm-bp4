@@ -39,12 +39,15 @@ export default function Navbar() {
     >
       <div className="section-container">
         <div className="flex items-center justify-between h-20">
-          <Link to="/" className="flex items-center">
+          <Link to="/" className="flex items-center gap-3">
             <img
               src="/logo-dark.jpeg"
               alt="Turf 360"
-              className="h-14 w-auto"
+              className="h-12 w-auto"
             />
+            <span className="font-display font-bold text-xl text-white">
+              The Turf <span className="text-turf-400">360</span>
+            </span>
           </Link>
 
           <div className="hidden lg:flex items-center gap-8">
