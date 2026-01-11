@@ -4,69 +4,37 @@ import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import PageHero from '../components/PageHero';
 
 const galleryImages = [
-  {
-    src: 'https://images.pexels.com/photos/274506/pexels-photo-274506.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    alt: 'Football turf at night',
-    category: 'Football',
-  },
-  {
-    src: 'https://images.pexels.com/photos/3621104/pexels-photo-3621104.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    alt: 'Players on the field',
-    category: 'Football',
-  },
-  {
-    src: 'https://images.pexels.com/photos/2291006/pexels-photo-2291006.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    alt: 'Team celebration',
-    category: 'Events',
-  },
-  {
-    src: 'https://images.pexels.com/photos/3628912/pexels-photo-3628912.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    alt: 'Cricket match',
-    category: 'Cricket',
-  },
-  {
-    src: 'https://images.pexels.com/photos/8224064/pexels-photo-8224064.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    alt: 'Pickleball court',
-    category: 'Pickleball',
-  },
-  {
-    src: 'https://images.pexels.com/photos/3991976/pexels-photo-3991976.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    alt: 'Sports facility overview',
-    category: 'Facility',
-  },
-  {
-    src: 'https://images.pexels.com/photos/47730/the-ball-stadion-football-the-pitch-47730.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    alt: 'Football on turf',
-    category: 'Football',
-  },
-  {
-    src: 'https://images.pexels.com/photos/3657154/pexels-photo-3657154.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    alt: 'Cricket players',
-    category: 'Cricket',
-  },
-  {
-    src: 'https://images.pexels.com/photos/8224057/pexels-photo-8224057.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    alt: 'Pickleball game',
-    category: 'Pickleball',
-  },
-  {
-    src: 'https://images.pexels.com/photos/6203795/pexels-photo-6203795.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    alt: 'Snooker table',
-    category: 'Snooker',
-  },
-  {
-    src: 'https://images.pexels.com/photos/1618200/pexels-photo-1618200.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    alt: 'Evening game',
-    category: 'Events',
-  },
-  {
-    src: 'https://images.pexels.com/photos/114296/pexels-photo-114296.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    alt: 'Turf overview',
-    category: 'Facility',
-  },
+  { src: '/football.jpg', alt: 'Football turf', category: 'Football' },
+  { src: '/cricket.jpeg', alt: 'Cricket pitch', category: 'Cricket' },
+  { src: '/pickleball.jpeg', alt: 'Pickleball courts', category: 'Pickleball' },
+  { src: '/snooker.webp', alt: 'Snooker table', category: 'Snooker' },
+  { src: '/corporate-banner.jpeg', alt: 'Corporate event', category: 'Events' },
+  { src: '/gallery/cric1.jpeg', alt: 'Cricket action shot', category: 'Cricket' },
+  { src: '/gallery/cric2.jpeg', alt: 'Cricket match', category: 'Cricket' },
+  { src: '/gallery/cric3.jpeg', alt: 'Cricket players', category: 'Cricket' },
+  { src: '/gallery/cric4.jpeg', alt: 'Cricket game', category: 'Cricket' },
+  { src: '/gallery/cric5.jpeg', alt: 'Cricket tournament', category: 'Cricket' },
+  { src: '/gallery/cri6.jpeg', alt: 'Cricket facility', category: 'Cricket' },
+  { src: '/gallery/pickleball1.jpeg', alt: 'Pickleball match', category: 'Pickleball' },
+  { src: '/gallery/pickleball2.jpeg', alt: 'Pickleball players', category: 'Pickleball' },
+  { src: '/gallery/pickleball3.jpeg', alt: 'Pickleball game', category: 'Pickleball' },
+  { src: '/gallery/pickleball4.jpeg', alt: 'Pickleball court action', category: 'Pickleball' },
+  { src: '/gallery/events1.jpeg', alt: 'Event celebration', category: 'Events' },
+  { src: '/gallery/events2.jpeg', alt: 'Team gathering', category: 'Events' },
+  { src: '/gallery/events3.jpeg', alt: 'Sports event', category: 'Events' },
+  { src: '/gallery/events4.jpeg', alt: 'Tournament ceremony', category: 'Events' },
+  { src: '/gallery/events5.jpeg', alt: 'Group photo', category: 'Events' },
+  { src: '/gallery/events6.jpeg', alt: 'Award ceremony', category: 'Events' },
+  { src: '/gallery/events7.jpeg', alt: 'Event highlights', category: 'Events' },
+  { src: '/gallery/cafe1.jpeg', alt: 'Cafe ambiance', category: 'Cafe' },
+  { src: '/gallery/cafe2.jpeg', alt: 'Cafe seating', category: 'Cafe' },
+  { src: '/gallery/cafe3.jpeg', alt: 'Cafe interior', category: 'Cafe' },
+  { src: '/gallery/cafe4.jpeg', alt: 'Food and beverages', category: 'Cafe' },
+  { src: '/gallery/cafe5.jpeg', alt: 'Cafe lounge', category: 'Cafe' },
+  { src: '/gallery/cafe6.jpeg', alt: 'Refreshments area', category: 'Cafe' },
 ];
 
-const categories = ['All', 'Football', 'Cricket', 'Pickleball', 'Snooker', 'Facility', 'Events'];
+const categories = ['All', 'Cricket', 'Pickleball', 'Football', 'Snooker', 'Events', 'Cafe'];
 
 export default function GalleryPage() {
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -99,7 +67,7 @@ export default function GalleryPage() {
       <PageHero
         title="Our Facilities"
         subtitle="Take a visual tour of our premium sports facilities"
-        backgroundImage="https://images.pexels.com/photos/3991976/pexels-photo-3991976.jpeg?auto=compress&cs=tinysrgb&w=1920"
+        backgroundImage="/gallery/cric1.jpeg"
       />
 
       <section className="py-16 bg-white">
