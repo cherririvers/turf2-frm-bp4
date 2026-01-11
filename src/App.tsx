@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage';
 import SportsPage from './pages/SportsPage';
 import AmenitiesPage from './pages/AmenitiesPage';
 import CorporatePage from './pages/CorporatePage';
+import EventsPage from './pages/EventsPage';
 import GalleryPage from './pages/GalleryPage';
 import ContactPage from './pages/ContactPage';
 import ScrollToTop from './components/ScrollToTop';
@@ -18,6 +19,7 @@ function App() {
           <Route path="sports" element={<SportsPage />} />
           <Route path="amenities" element={<AmenitiesPage />} />
           <Route path="corporate" element={<CorporatePage />} />
+          <Route path="events" element={<EventsPage />} />
           <Route path="gallery" element={<GalleryPage />} />
           <Route path="contact" element={<ContactPage />} />
         </Route>
