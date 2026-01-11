@@ -6,6 +6,7 @@ const quickLinks = [
   { name: 'Sports', href: '/sports' },
   { name: 'Amenities', href: '/amenities' },
   { name: 'Corporate', href: '/corporate' },
+  { name: 'Events', href: '/events' },
   { name: 'Gallery', href: '/gallery' },
   { name: 'Contact', href: '/contact' },
 ];
@@ -27,13 +28,12 @@ export default function Footer() {
       <div className="section-container py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
-            <Link to="/" className="flex items-center gap-2 mb-6">
-              <div className="w-10 h-10 rounded-full bg-turf-600 flex items-center justify-center">
-                <span className="text-white font-display font-bold text-sm">360</span>
-              </div>
-              <span className="font-display font-bold text-xl">
-                Turf <span className="text-turf-400">360</span>
-              </span>
+            <Link to="/" className="block mb-6">
+              <img
+                src="/logo-dark.jpeg"
+                alt="Turf 360"
+                className="h-16 w-auto"
+              />
             </Link>
             <p className="text-charcoal-400 mb-6 leading-relaxed">
               Premium sports facility in Noida offering Football, Box Cricket, Pickleball, and
