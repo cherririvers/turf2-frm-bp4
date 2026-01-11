@@ -5,6 +5,9 @@ import PageHero from '../components/PageHero';
 
 const galleryImages = [
   { src: '/football.jpg', alt: 'Football turf', category: 'Football' },
+  { src: 'https://images.pexels.com/photos/274506/pexels-photo-274506.jpeg?auto=compress&cs=tinysrgb&w=1200', alt: 'Football turf at night', category: 'Football' },
+  { src: 'https://images.pexels.com/photos/3621104/pexels-photo-3621104.jpeg?auto=compress&cs=tinysrgb&w=1200', alt: 'Players on the field', category: 'Football' },
+  { src: 'https://images.pexels.com/photos/47730/the-ball-stadion-football-the-pitch-47730.jpeg?auto=compress&cs=tinysrgb&w=1200', alt: 'Football on turf', category: 'Football' },
   { src: '/cricket.jpeg', alt: 'Cricket pitch', category: 'Cricket' },
   { src: '/pickleball.jpeg', alt: 'Pickleball courts', category: 'Pickleball' },
   { src: '/snooker.webp', alt: 'Snooker table', category: 'Snooker' },
