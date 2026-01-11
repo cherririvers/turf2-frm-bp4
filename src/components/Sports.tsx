@@ -4,15 +4,6 @@ import { ArrowRight, Users, Timer, Trophy } from 'lucide-react';
 
 const sports = [
   {
-    id: 'football',
-    name: 'Football / Futsal',
-    image: '/football.jpg',
-    description:
-      'Experience the thrill of football on our premium artificial turf. Professional coaching available to help budding footballers take up the sport as a career.',
-    features: ['5-a-side & 7-a-side', 'Professional Coaching', 'Tournament Ready'],
-    color: 'from-turf-600 to-turf-700',
-  },
-  {
     id: 'cricket',
     name: 'Box Cricket',
     image: '/cricket.jpeg',
@@ -20,6 +11,15 @@ const sports = [
       'Fast-paced cricket in an enclosed space. Perfect for urban enthusiasts with 6-8 players per side. Modified rules and soft balls make it accessible and fun.',
     features: ['6-8 Players Per Team', 'Enclosed Net Area', 'Quick Matches'],
     color: 'from-blue-600 to-blue-700',
+  },
+  {
+    id: 'football',
+    name: 'Football / Futsal',
+    image: '/football.jpg',
+    description:
+      'Experience the thrill of football on our premium artificial turf. Professional coaching available to help budding footballers take up the sport as a career.',
+    features: ['5-a-side & 7-a-side', 'Professional Coaching', 'Tournament Ready'],
+    color: 'from-turf-600 to-turf-700',
   },
   {
     id: 'pickleball',

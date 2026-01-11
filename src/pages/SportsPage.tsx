@@ -4,21 +4,6 @@ import PageHero from '../components/PageHero';
 
 const sports = [
   {
-    id: 'football',
-    name: 'Football / Futsal',
-    image: '/football.jpg',
-    description:
-      'The history of football is a long one, with ancient ball games played in cultures like China, Greece, and Rome. Modern football was codified in England with standardized rules, and the sport was introduced to India in the 19th century.',
-    longDescription:
-      'Experience the thrill of football on our premium artificial turf. At Turf 360, we help budding footballers with professional coaches and assistance to take up football as a career. Our facility accommodates both 5-a-side and 7-a-side matches, perfect for casual games or competitive tournaments.',
-    features: [
-      { icon: Users, text: '5-a-side & 7-a-side formats' },
-      { icon: Trophy, text: 'Tournament-ready facilities' },
-      { icon: Dumbbell, text: 'Professional coaching available' },
-      { icon: Target, text: 'Career guidance for aspiring players' },
-    ],
-  },
-  {
     id: 'cricket',
     name: 'Box Cricket',
     image: '/cricket.jpeg',
@@ -31,6 +16,21 @@ const sports = [
       { icon: Timer, text: 'Quick 20-minute matches' },
       { icon: Award, text: 'League tournaments available' },
       { icon: Target, text: 'Enclosed netted area' },
+    ],
+  },
+  {
+    id: 'football',
+    name: 'Football / Futsal',
+    image: '/football.jpg',
+    description:
+      'The history of football is a long one, with ancient ball games played in cultures like China, Greece, and Rome. Modern football was codified in England with standardized rules, and the sport was introduced to India in the 19th century.',
+    longDescription:
+      'Experience the thrill of football on our premium artificial turf. At Turf 360, we help budding footballers with professional coaches and assistance to take up football as a career. Our facility accommodates both 5-a-side and 7-a-side matches, perfect for casual games or competitive tournaments.',
+    features: [
+      { icon: Users, text: '5-a-side & 7-a-side formats' },
+      { icon: Trophy, text: 'Tournament-ready facilities' },
+      { icon: Dumbbell, text: 'Professional coaching available' },
+      { icon: Target, text: 'Career guidance for aspiring players' },
     ],
   },
   {
