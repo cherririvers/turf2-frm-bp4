@@ -6,7 +6,7 @@ const sports = [
   {
     id: 'football',
     name: 'Football / Futsal',
-    image: 'https://images.pexels.com/photos/47730/the-ball-stadion-football-the-pitch-47730.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    image: '/football.jpg',
     description:
       'The history of football is a long one, with ancient ball games played in cultures like China, Greece, and Rome. Modern football was codified in England with standardized rules, and the sport was introduced to India in the 19th century.',
     longDescription:
@@ -21,7 +21,7 @@ const sports = [
   {
     id: 'cricket',
     name: 'Box Cricket',
-    image: 'https://images.pexels.com/photos/3657154/pexels-photo-3657154.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    image: '/cricket.jpeg',
     description:
       'Box cricket emerged from India\'s street and gully cricket culture, driven by increasing urbanization and the scarcity of large playing fields. From makeshift beginnings to structured formats, box cricket has become a beloved urban sport.',
     longDescription:
@@ -36,7 +36,7 @@ const sports = [
   {
     id: 'pickleball',
     name: 'Pickleball',
-    image: 'https://images.pexels.com/photos/8224057/pexels-photo-8224057.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    image: '/pickleball.jpeg',
     description:
       'Pickleball originating from its humble roots in 1965 on Bainbridge Island, Washington came to Indian soil around 2008. The sport is on the increase in India because of shifting recreational patterns.',
     longDescription:
@@ -51,7 +51,7 @@ const sports = [
   {
     id: 'snooker',
     name: 'Snooker',
-    image: 'https://images.pexels.com/photos/6203795/pexels-photo-6203795.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    image: '/snooker.webp',
     description:
       'Snooker originated in the 19th century in colonial India, where British soldiers stationed in the country sought ways to pass the time. The game evolved from traditional billiards and other cue sports.',
     longDescription:

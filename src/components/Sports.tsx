@@ -6,7 +6,7 @@ const sports = [
   {
     id: 'football',
     name: 'Football / Futsal',
-    image: 'https://images.pexels.com/photos/47730/the-ball-stadion-football-the-pitch-47730.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: '/football.jpg',
     description:
       'Experience the thrill of football on our premium artificial turf. Professional coaching available to help budding footballers take up the sport as a career.',
     features: ['5-a-side & 7-a-side', 'Professional Coaching', 'Tournament Ready'],
@@ -15,7 +15,7 @@ const sports = [
   {
     id: 'cricket',
     name: 'Box Cricket',
-    image: 'https://images.pexels.com/photos/3657154/pexels-photo-3657154.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: '/cricket.jpeg',
     description:
       'Fast-paced cricket in an enclosed space. Perfect for urban enthusiasts with 6-8 players per side. Modified rules and soft balls make it accessible and fun.',
     features: ['6-8 Players Per Team', 'Enclosed Net Area', 'Quick Matches'],
@@ -24,7 +24,7 @@ const sports = [
   {
     id: 'pickleball',
     name: 'Pickleball',
-    image: 'https://images.pexels.com/photos/8224057/pexels-photo-8224057.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: '/pickleball.jpeg',
     description:
       'The fastest-growing sport in India! Easy to learn, fun to play, and great exercise. Perfect for all ages - as long as you can move around and swing a racket.',
     features: ['All Ages Welcome', 'Easy to Learn', 'Great Workout'],
@@ -33,7 +33,7 @@ const sports = [
   {
     id: 'snooker',
     name: 'Snooker',
-    image: 'https://images.pexels.com/photos/6203795/pexels-photo-6203795.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: '/snooker.webp',
     description:
       'A unique combination of snooker in a picturesque setting. Develop fundamental techniques like proper stance, grip, and smooth cue action.',
     features: ['Premium Tables', 'Scenic Setting', 'Skill Development'],
