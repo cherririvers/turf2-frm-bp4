@@ -44,7 +44,7 @@ const events: TournamentEvent[] = [
       { name: 'Yash', phone: '7011155069' },
       { name: 'Sonu', phone: '7835939361' }
     ],
-    images: []
+    images: ['/events/box-cricket-2026-poster.jpg']
   },
   {
     id: 'rv-cricket-championship-2025',
@@ -68,7 +68,7 @@ const events: TournamentEvent[] = [
     contacts: [
       { name: 'Contact', phone: '8860182600' }
     ],
-    images: []
+    images: ['/events/rv-cricket-2025-poster1.jpg', '/events/rv-cricket-2025-poster2.jpg']
   },
   {
     id: 'box-cricket-season-1',
@@ -89,7 +89,7 @@ const events: TournamentEvent[] = [
       'Professional match coordination',
       'Memorable day of cricket action'
     ],
-    images: []
+    images: ['/events/box-cricket-season1-poster1.jpg', '/events/box-cricket-season1-poster2.jpg']
   }
 ];
 
@@ -100,15 +100,25 @@ function EventCard({ event, isReversed }: { event: TournamentEvent; isReversed: 
   return (
     <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-charcoal-100">
       <div className={`grid lg:grid-cols-2 gap-0 ${isReversed ? 'lg:flex lg:flex-row-reverse' : ''}`}>
-        <div className="relative bg-charcoal-100 min-h-[300px] lg:min-h-[400px] flex items-center justify-center">
+        <div className="relative bg-charcoal-100 min-h-[300px] lg:min-h-[400px] flex items-center justify-center overflow-hidden">
           {event.images.length > 0 ? (
-            <div className="grid grid-cols-2 gap-2 p-4 w-full h-full">
+            <div className={`w-full h-full p-3 ${
+              event.images.length === 1
+                ? 'flex'
+                : event.images.length === 2
+                  ? 'grid grid-cols-2 gap-2'
+                  : 'grid grid-cols-2 gap-2'
+            }`}>
               {event.images.slice(0, 4).map((img, idx) => (
                 <img
                   key={idx}
                   src={img}
                   alt={`${event.title} photo ${idx + 1}`}
-                  className="w-full h-full object-cover rounded-lg"
+                  className={`object-cover rounded-lg ${
+                    event.images.length === 1
+                      ? 'w-full h-full object-contain bg-charcoal-200'
+                      : 'w-full h-full'
+                  }`}
                 />
               ))}
             </div>
