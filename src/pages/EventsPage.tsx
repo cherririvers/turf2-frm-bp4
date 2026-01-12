@@ -44,7 +44,7 @@ const events: TournamentEvent[] = [
       { name: 'Yash', phone: '7011155069' },
       { name: 'Sonu', phone: '7835939361' }
     ],
-    images: ['/events/box-cricket-2026-poster.jpg']
+    images: ['/events/event-upcoming-poster-2026-cricket-tournament.jpg']
   },
   {
     id: 'rv-cricket-championship-2025',
@@ -68,7 +68,7 @@ const events: TournamentEvent[] = [
     contacts: [
       { name: 'Contact', phone: '8860182600' }
     ],
-    images: ['/events/rv-cricket-2025-poster1.jpg', '/events/rv-cricket-2025-poster2.jpg']
+    images: ['/events/evet-rvcc.jpg', '/events/rvcc2025.jpg']
   },
   {
     id: 'box-cricket-season-1',
@@ -89,7 +89,7 @@ const events: TournamentEvent[] = [
       'Professional match coordination',
       'Memorable day of cricket action'
     ],
-    images: ['/events/box-cricket-season1-poster1.jpg', '/events/box-cricket-season1-poster2.jpg']
+    images: ['/events/event_turf360-box-cricket-tournament.jpg', '/events/event-turf360-box-cricket-tournament.jpg']
   }
 ];
 
