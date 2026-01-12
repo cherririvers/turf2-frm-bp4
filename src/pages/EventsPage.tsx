@@ -50,7 +50,7 @@ const events: TournamentEvent[] = [
     id: 'rv-cricket-championship-2025',
     title: 'RV Cricket (Box) Championship',
     subtitle: 'Presented by Sports Development Federation',
-    status: 'upcoming',
+    status: 'past',
     date: 'Sunday, 9th November 2025',
     location: 'Turf 360, Sector 150, Noida',
     entryFee: '3,500',
