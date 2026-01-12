@@ -1,301 +1,300 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, MapPin, Users, Clock, ChevronRight, Trophy, PartyPopper, Briefcase } from 'lucide-react';
+import { Calendar, MapPin, Clock, ChevronRight, Trophy, Phone, Users, IndianRupee, ImageIcon } from 'lucide-react';
 import PageHero from '../components/PageHero';
 
-type Event = {
-  id: number;
-  title: string;
-  date: string;
-  time: string;
-  location: string;
-  attendees: string;
-  description: string;
-  image: string;
-  category: 'tournament' | 'corporate' | 'celebration';
-  highlights: string[];
-};
+type EventStatus = 'upcoming' | 'past';
 
-const pastEvents: Event[] = [
+interface TournamentEvent {
+  id: string;
+  title: string;
+  subtitle?: string;
+  status: EventStatus;
+  date: string;
+  time?: string;
+  location: string;
+  entryFee: string;
+  prizePool: string;
+  description: string;
+  highlights: string[];
+  contacts?: { name: string; phone: string }[];
+  images: string[];
+}
+
+const events: TournamentEvent[] = [
   {
-    id: 1,
-    title: 'Inter-Corporate Cricket Championship 2024',
-    date: 'December 15, 2024',
-    time: '9:00 AM - 6:00 PM',
-    location: 'Cricket Arena',
-    attendees: '120+ participants',
-    description: 'Our biggest corporate cricket tournament of the year brought together 12 teams from leading companies across Noida. The day was filled with intense matches, incredible sportsmanship, and unforgettable moments.',
-    image: '/gallery/events1.jpeg',
-    category: 'tournament',
+    id: 'box-cricket-2026-season-2',
+    title: 'Box Cricket Tournament 2026',
+    subtitle: 'Season 2',
+    status: 'upcoming',
+    date: '25-26 January 2026',
+    location: 'Turf 360, Sector 150, Noida',
+    entryFee: '4,900',
+    prizePool: '1,00,000',
+    description: 'The highly anticipated Season 2 of the Turf 360 Box Cricket Tournament is here! After the massive success of Season 1, we\'re back with bigger prizes and more excitement. Limited slots available - register now to secure your team\'s spot in this premium cricket tournament.',
     highlights: [
-      '12 corporate teams competed',
-      'Professional umpires and scoring',
-      'Trophies and prizes worth Rs 50,000',
-      'Live commentary and match streaming'
-    ]
+      'Prize money up to Rs 1,00,000',
+      '2-day tournament format',
+      'Limited slots available',
+      'Professional umpiring',
+      'Live scoring and updates',
+      'Refreshments included'
+    ],
+    contacts: [
+      { name: 'Yash', phone: '7011155069' },
+      { name: 'Sonu', phone: '7835939361' }
+    ],
+    images: []
   },
   {
-    id: 2,
-    title: 'TechCorp Annual Team Building Day',
-    date: 'November 28, 2024',
-    time: '10:00 AM - 4:00 PM',
-    location: 'Full Facility',
-    attendees: '80 employees',
-    description: 'TechCorp chose Turf 360 for their annual team building event. The day included cricket matches, pickleball tournaments, and ended with a celebration at our cafe lounge.',
-    image: '/gallery/events2.jpeg',
-    category: 'corporate',
+    id: 'rv-cricket-championship-2025',
+    title: 'RV Cricket (Box) Championship',
+    subtitle: 'Presented by Sports Development Federation',
+    status: 'upcoming',
+    date: 'Sunday, 9th November 2025',
+    location: 'Turf 360, Sector 150, Noida',
+    entryFee: '3,500',
+    prizePool: '21,000',
+    description: 'The RV Cricket Championship 2025 welcomes all cricket lovers - no age limits, just pure passion! Join us for an exciting day of competitive box cricket action. Each team has 7 players (6 on field + 1 sub). Players receive an exclusive T-shirt and refreshments to stay fueled through the games.',
     highlights: [
-      'Custom team jerseys provided',
-      'Professional event coordination',
-      'Catered lunch and refreshments',
-      'Award ceremony with custom trophies'
-    ]
+      'Winner: Rs 21,000 | Runner-up: Rs 11,000 (16 teams)',
+      'Winner: Rs 16,000 | Runner-up: Rs 8,000 (12 teams)',
+      'Winner: Rs 12,000 | Runner-up: Rs 7,000 (8 teams)',
+      '7 players per team (6 + 1 substitute)',
+      'Exclusive T-shirt for all players',
+      'Refreshments included',
+      'Last date of registration: 3rd November 2025'
+    ],
+    contacts: [
+      { name: 'Contact', phone: '8860182600' }
+    ],
+    images: []
   },
   {
-    id: 3,
-    title: 'Weekend Warriors Pickleball Tournament',
-    date: 'November 10, 2024',
-    time: '8:00 AM - 2:00 PM',
-    location: 'Pickleball Courts',
-    attendees: '48 players',
-    description: 'Our monthly pickleball tournament saw record participation with players competing in singles and doubles categories. The event showcased the growing popularity of pickleball in our community.',
-    image: '/gallery/events3.jpeg',
-    category: 'tournament',
+    id: 'box-cricket-season-1',
+    title: 'Box Cricket Tournament Season 1',
+    subtitle: 'Sponsored by Lifelong',
+    status: 'past',
+    date: '15th August 2025',
+    time: '11:00 AM Onwards',
+    location: 'Turf 360, Sector 150, Noida',
+    entryFee: '3,500',
+    prizePool: '22,000',
+    description: 'Our inaugural Box Cricket Tournament was a massive success! Held on Independence Day 2025, teams from across Noida competed in thrilling matches throughout the day. The tournament showcased incredible talent, sportsmanship, and the true spirit of cricket.',
     highlights: [
-      'Singles and doubles categories',
-      'Age-based divisions',
-      'Professional coaching tips session',
-      'Equipment showcase by sponsors'
-    ]
-  },
-  {
-    id: 4,
-    title: 'Birthday Celebration - Raj\'s 30th',
-    date: 'October 22, 2024',
-    time: '4:00 PM - 9:00 PM',
-    location: 'Private Turf + Cafe',
-    attendees: '35 guests',
-    description: 'A milestone birthday celebration that combined sports and party perfectly. Raj and his friends enjoyed a friendly football match followed by a celebration at our cafe with customized decorations.',
-    image: '/gallery/events4.jpeg',
-    category: 'celebration',
-    highlights: [
-      'Private turf booking',
-      'Customized decorations',
-      'Catering and cake arrangement',
-      'Photo booth setup'
-    ]
-  },
-  {
-    id: 5,
-    title: 'Startup League Finals',
-    date: 'October 8, 2024',
-    time: '11:00 AM - 7:00 PM',
-    location: 'Cricket Arena',
-    attendees: '200+ spectators',
-    description: 'The culmination of our 8-week startup cricket league. Four teams battled it out in the semi-finals and finals, with InnovateTech emerging as champions after an thrilling super over finish.',
-    image: '/gallery/events5.jpeg',
-    category: 'tournament',
-    highlights: [
-      '8 weeks of league matches',
-      'Professional commentary',
-      'Live scoreboard display',
-      'Championship trophy presentation'
-    ]
-  },
-  {
-    id: 6,
-    title: 'GlobalFinance Employee Sports Day',
-    date: 'September 25, 2024',
-    time: '9:00 AM - 5:00 PM',
-    location: 'Full Facility',
-    attendees: '150 employees',
-    description: 'A full day corporate event featuring multiple sports activities across all our facilities. Teams competed in cricket, football, pickleball, and snooker for the overall championship trophy.',
-    image: '/gallery/events6.jpeg',
-    category: 'corporate',
-    highlights: [
-      'Multi-sport competition format',
-      'Team-wise point system',
-      'Executive participation',
-      'Grand prize ceremony'
-    ]
-  },
-  {
-    id: 7,
-    title: 'Friends Reunion Football Match',
-    date: 'September 14, 2024',
-    time: '6:00 PM - 10:00 PM',
-    location: 'Football Turf',
-    attendees: '22 players',
-    description: 'A group of college friends reunited after 10 years for a nostalgic football match. The evening was filled with competitive spirit, laughter, and memories relived on our premium turf.',
-    image: '/gallery/events7.jpeg',
-    category: 'celebration',
-    highlights: [
-      'Night match under floodlights',
-      'Custom team photos',
-      'Post-match dinner at cafe',
-      'Video highlights created'
-    ]
+      'Independence Day special tournament',
+      'Prize pool worth Rs 22,000',
+      'Sponsored by Lifelong',
+      'Multiple teams participated',
+      'Professional match coordination',
+      'Memorable day of cricket action'
+    ],
+    images: []
   }
 ];
 
-const categoryIcons = {
-  tournament: Trophy,
-  corporate: Briefcase,
-  celebration: PartyPopper
-};
+function EventCard({ event, isReversed }: { event: TournamentEvent; isReversed: boolean }) {
+  const [showDetails, setShowDetails] = useState(false);
+  const isUpcoming = event.status === 'upcoming';
 
-const categoryLabels = {
-  tournament: 'Tournament',
-  corporate: 'Corporate Event',
-  celebration: 'Celebration'
-};
+  return (
+    <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-charcoal-100">
+      <div className={`grid lg:grid-cols-2 gap-0 ${isReversed ? 'lg:flex lg:flex-row-reverse' : ''}`}>
+        <div className="relative bg-charcoal-100 min-h-[300px] lg:min-h-[400px] flex items-center justify-center">
+          {event.images.length > 0 ? (
+            <div className="grid grid-cols-2 gap-2 p-4 w-full h-full">
+              {event.images.slice(0, 4).map((img, idx) => (
+                <img
+                  key={idx}
+                  src={img}
+                  alt={`${event.title} photo ${idx + 1}`}
+                  className="w-full h-full object-cover rounded-lg"
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center p-8">
+              <ImageIcon size={64} className="mx-auto text-charcoal-300 mb-4" />
+              <p className="text-charcoal-400 font-medium">Event photos coming soon</p>
+            </div>
+          )}
+          <div className={`absolute top-4 left-4 px-4 py-2 rounded-full text-sm font-bold ${
+            isUpcoming
+              ? 'bg-turf-600 text-white'
+              : 'bg-charcoal-700 text-white'
+          }`}>
+            {isUpcoming ? 'Upcoming' : 'Past Event'}
+          </div>
+        </div>
 
-const categoryColors = {
-  tournament: 'bg-amber-100 text-amber-700',
-  corporate: 'bg-blue-100 text-blue-700',
-  celebration: 'bg-rose-100 text-rose-700'
-};
+        <div className="p-6 lg:p-8">
+          {event.subtitle && (
+            <p className="text-turf-600 font-medium text-sm mb-2">{event.subtitle}</p>
+          )}
+          <h3 className="font-display text-2xl lg:text-3xl font-bold text-charcoal-900 mb-4">
+            {event.title}
+          </h3>
+
+          <div className="grid grid-cols-2 gap-3 mb-6">
+            <div className="flex items-center gap-2 text-charcoal-600">
+              <Calendar size={18} className="text-turf-600 flex-shrink-0" />
+              <span className="text-sm">{event.date}</span>
+            </div>
+            {event.time && (
+              <div className="flex items-center gap-2 text-charcoal-600">
+                <Clock size={18} className="text-turf-600 flex-shrink-0" />
+                <span className="text-sm">{event.time}</span>
+              </div>
+            )}
+            <div className="flex items-center gap-2 text-charcoal-600">
+              <MapPin size={18} className="text-turf-600 flex-shrink-0" />
+              <span className="text-sm">{event.location}</span>
+            </div>
+            <div className="flex items-center gap-2 text-charcoal-600">
+              <Users size={18} className="text-turf-600 flex-shrink-0" />
+              <span className="text-sm">Entry: Rs {event.entryFee}/team</span>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-r from-amber-50 to-amber-100 rounded-xl p-4 mb-6">
+            <div className="flex items-center gap-3">
+              <Trophy className="text-amber-600" size={28} />
+              <div>
+                <p className="text-xs text-amber-700 font-medium uppercase tracking-wide">Prize Pool</p>
+                <p className="text-2xl font-bold text-amber-800 flex items-center">
+                  <IndianRupee size={20} className="mr-0.5" />
+                  {event.prizePool}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <p className="text-charcoal-600 mb-4 leading-relaxed">
+            {event.description}
+          </p>
+
+          <button
+            onClick={() => setShowDetails(!showDetails)}
+            className="text-turf-600 font-medium hover:text-turf-700 transition-colors flex items-center gap-1 mb-4"
+          >
+            {showDetails ? 'Hide Details' : 'View Details'}
+            <ChevronRight size={18} className={`transition-transform ${showDetails ? 'rotate-90' : ''}`} />
+          </button>
+
+          {showDetails && (
+            <div className="space-y-4 animate-fade-in">
+              <div className="border-t border-charcoal-100 pt-4">
+                <h4 className="font-semibold text-charcoal-900 mb-3">Event Highlights</h4>
+                <ul className="space-y-2">
+                  {event.highlights.map((highlight, idx) => (
+                    <li key={idx} className="flex items-start gap-2 text-charcoal-600 text-sm">
+                      <ChevronRight size={16} className="text-turf-600 flex-shrink-0 mt-0.5" />
+                      {highlight}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {event.contacts && event.contacts.length > 0 && (
+                <div className="border-t border-charcoal-100 pt-4">
+                  <h4 className="font-semibold text-charcoal-900 mb-3">
+                    {isUpcoming ? 'Register Now' : 'Contact'}
+                  </h4>
+                  <div className="flex flex-wrap gap-3">
+                    {event.contacts.map((contact, idx) => (
+                      <a
+                        key={idx}
+                        href={`tel:+91${contact.phone}`}
+                        className="inline-flex items-center gap-2 bg-turf-50 hover:bg-turf-100 text-turf-700 px-4 py-2 rounded-lg transition-colors"
+                      >
+                        <Phone size={16} />
+                        <span className="font-medium">{contact.name}: {contact.phone}</span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function EventsPage() {
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [expandedEvent, setExpandedEvent] = useState<number | null>(null);
-
-  const filteredEvents = selectedCategory === 'all'
-    ? pastEvents
-    : pastEvents.filter(event => event.category === selectedCategory);
+  const upcomingEvents = events.filter(e => e.status === 'upcoming');
+  const pastEvents = events.filter(e => e.status === 'past');
 
   return (
     <>
       <PageHero
         title="Events at Turf 360"
-        subtitle="Relive the excitement - tournaments, celebrations, and corporate gatherings"
+        subtitle="Tournaments, Championships, and Sporting Excellence"
         backgroundImage="/gallery/events1.jpeg"
       />
 
-      <section className="py-16 bg-white">
-        <div className="section-container">
-          <div className="text-center mb-12">
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-charcoal-900 mb-4">
-              Past <span className="text-gradient">Events</span>
-            </h2>
-            <p className="text-charcoal-600 text-lg max-w-2xl mx-auto">
-              From thrilling tournaments to memorable celebrations, see what makes Turf 360 the preferred venue for events in Noida.
-            </p>
+      {upcomingEvents.length > 0 && (
+        <section className="py-16 bg-gradient-to-b from-turf-50 to-white">
+          <div className="section-container">
+            <div className="text-center mb-12">
+              <div className="inline-block bg-turf-100 text-turf-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
+                Mark Your Calendar
+              </div>
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-charcoal-900 mb-4">
+                Upcoming <span className="text-gradient">Events</span>
+              </h2>
+              <p className="text-charcoal-600 text-lg max-w-2xl mx-auto">
+                Don't miss out on these exciting tournaments. Register now to secure your spot!
+              </p>
+            </div>
+
+            <div className="space-y-8">
+              {upcomingEvents.map((event, idx) => (
+                <EventCard key={event.id} event={event} isReversed={idx % 2 !== 0} />
+              ))}
+            </div>
           </div>
+        </section>
+      )}
 
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
-            {['all', 'tournament', 'corporate', 'celebration'].map((category) => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-5 py-2.5 rounded-full font-medium transition-all duration-300 ${
-                  selectedCategory === category
-                    ? 'bg-turf-600 text-white shadow-lg'
-                    : 'bg-charcoal-100 text-charcoal-700 hover:bg-charcoal-200'
-                }`}
-              >
-                {category === 'all' ? 'All Events' : categoryLabels[category as keyof typeof categoryLabels]}
-              </button>
-            ))}
+      {pastEvents.length > 0 && (
+        <section className="py-16 bg-charcoal-50">
+          <div className="section-container">
+            <div className="text-center mb-12">
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-charcoal-900 mb-4">
+                Past <span className="text-gradient">Events</span>
+              </h2>
+              <p className="text-charcoal-600 text-lg max-w-2xl mx-auto">
+                Relive the excitement from our previous tournaments and championships.
+              </p>
+            </div>
+
+            <div className="space-y-8">
+              {pastEvents.map((event, idx) => (
+                <EventCard key={event.id} event={event} isReversed={idx % 2 !== 0} />
+              ))}
+            </div>
           </div>
-
-          <div className="space-y-8">
-            {filteredEvents.map((event) => {
-              const Icon = categoryIcons[event.category];
-              const isExpanded = expandedEvent === event.id;
-
-              return (
-                <div
-                  key={event.id}
-                  className="bg-charcoal-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300"
-                >
-                  <div className="grid md:grid-cols-5 gap-0">
-                    <div className="md:col-span-2 relative h-64 md:h-auto">
-                      <img
-                        src={event.image}
-                        alt={event.title}
-                        className="w-full h-full object-cover"
-                      />
-                      <div className={`absolute top-4 left-4 ${categoryColors[event.category]} px-3 py-1.5 rounded-full text-sm font-medium flex items-center gap-1.5`}>
-                        <Icon size={14} />
-                        {categoryLabels[event.category]}
-                      </div>
-                    </div>
-
-                    <div className="md:col-span-3 p-6 md:p-8">
-                      <h3 className="font-display text-xl md:text-2xl font-bold text-charcoal-900 mb-3">
-                        {event.title}
-                      </h3>
-
-                      <div className="flex flex-wrap gap-4 text-sm text-charcoal-600 mb-4">
-                        <div className="flex items-center gap-1.5">
-                          <Calendar size={16} className="text-turf-600" />
-                          {event.date}
-                        </div>
-                        <div className="flex items-center gap-1.5">
-                          <Clock size={16} className="text-turf-600" />
-                          {event.time}
-                        </div>
-                        <div className="flex items-center gap-1.5">
-                          <MapPin size={16} className="text-turf-600" />
-                          {event.location}
-                        </div>
-                        <div className="flex items-center gap-1.5">
-                          <Users size={16} className="text-turf-600" />
-                          {event.attendees}
-                        </div>
-                      </div>
-
-                      <p className="text-charcoal-700 mb-4">
-                        {event.description}
-                      </p>
-
-                      {isExpanded && (
-                        <div className="mt-4 pt-4 border-t border-charcoal-200 animate-fade-in">
-                          <h4 className="font-semibold text-charcoal-900 mb-3">Event Highlights</h4>
-                          <ul className="grid sm:grid-cols-2 gap-2">
-                            {event.highlights.map((highlight, idx) => (
-                              <li key={idx} className="flex items-center gap-2 text-charcoal-600">
-                                <ChevronRight size={16} className="text-turf-600 flex-shrink-0" />
-                                {highlight}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-
-                      <button
-                        onClick={() => setExpandedEvent(isExpanded ? null : event.id)}
-                        className="mt-4 text-turf-600 font-medium hover:text-turf-700 transition-colors flex items-center gap-1"
-                      >
-                        {isExpanded ? 'Show Less' : 'View Highlights'}
-                        <ChevronRight size={18} className={`transition-transform ${isExpanded ? 'rotate-90' : ''}`} />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <section className="py-16 bg-gradient-to-br from-turf-600 to-turf-700">
         <div className="section-container">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-6">
-                Host Your Event at Turf 360
+                Host Your Tournament at Turf 360
               </h2>
               <p className="text-turf-100 text-lg mb-8">
-                Whether it's a corporate team building, birthday celebration, tournament, or reunion - our facilities and team are ready to make your event memorable.
+                Looking to organize a cricket tournament, corporate league, or sports event? Our facilities and team are ready to make your event a success.
               </p>
               <div className="space-y-4">
                 {[
-                  'Dedicated event coordinator',
-                  'Customizable packages',
-                  'Catering services available',
-                  'Professional photography options'
+                  'Professional turf and facilities',
+                  'Event coordination support',
+                  'Customizable tournament formats',
+                  'Catering and refreshments available'
                 ].map((feature, idx) => (
                   <div key={idx} className="flex items-center gap-3 text-white">
                     <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center">
@@ -308,10 +307,10 @@ export default function EventsPage() {
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center">
               <h3 className="font-display text-2xl font-bold text-white mb-4">
-                Ready to Plan Your Event?
+                Want to Organize an Event?
               </h3>
               <p className="text-turf-100 mb-6">
-                Contact our events team for personalized packages and availability.
+                Contact us to discuss your requirements and get a customized quote.
               </p>
               <Link to="/contact" className="btn-gold text-lg px-8 py-4 inline-block">
                 Get in Touch
