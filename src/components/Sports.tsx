@@ -10,7 +10,7 @@ const sports = [
     description:
       'Fast-paced cricket in an enclosed space. Perfect for urban enthusiasts with 6-8 players per side. Modified rules and soft balls make it accessible and fun.',
     features: ['6-8 Players Per Team', 'Enclosed Net Area', 'Quick Matches'],
-    color: 'from-blue-600 to-blue-700',
+    color: 'from-emerald-600 to-emerald-800',
   },
   {
     id: 'football',
