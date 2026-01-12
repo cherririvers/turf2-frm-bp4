@@ -47,9 +47,32 @@ const events: TournamentEvent[] = [
     images: ['/events/event-upcoming-poster-2026-cricket-tournament.jpg']
   },
   {
+    id: 'rv-cricket-championship-season-2',
+    title: 'RV Cricket (Box) Championship',
+    subtitle: 'Season 2 - Presented by Sports Development Federation & GameRun',
+    status: 'past',
+    date: 'Sunday, 21st December 2025',
+    location: 'Turf 360, Sector 150, Noida, Greater Noida, UP - 201302',
+    entryFee: '3,000 - 3,500',
+    prizePool: '24,000',
+    description: 'Season 2 of the RV Cricket Championship brought back the excitement with even more competitive action! Organized by Sports Development Federation and GameRun, this tournament featured intense box cricket matches with live YouTube streaming for fans to watch from anywhere.',
+    highlights: [
+      'Winner: Rs 16,000 | Runner-up: Rs 8,000',
+      'Early bird entry: Rs 3,000 (before 14th Dec)',
+      'Regular entry: Rs 3,500 (after 14th Dec)',
+      'Live YouTube streaming of matches',
+      'Professional tournament coordination',
+      'Exciting cricket action throughout the day'
+    ],
+    contacts: [
+      { name: 'Akash', phone: '8860182600' }
+    ],
+    images: ['/events/rvcc-season2.jpg']
+  },
+  {
     id: 'rv-cricket-championship-2025',
     title: 'RV Cricket (Box) Championship',
-    subtitle: 'Presented by Sports Development Federation',
+    subtitle: 'Season 1 - Presented by Sports Development Federation',
     status: 'past',
     date: 'Sunday, 9th November 2025',
     location: 'Turf 360, Sector 150, Noida',
