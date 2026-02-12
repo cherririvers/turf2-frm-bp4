@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://theturf360.com/</loc>
+    <lastmod>2026-02-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://theturf360.com/cricket.jpeg</image:loc>
+      <image:title>Turf 360 - Box Cricket Facility in Noida</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://theturf360.com/football.jpg</image:loc>
+      <image:title>Turf 360 - Football Turf in Noida</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://theturf360.com/pickleball.jpeg</image:loc>
+      <image:title>Turf 360 - Pickleball Court in Noida</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://theturf360.com/sports</loc>
+    <lastmod>2026-02-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://theturf360.com/cricket.jpeg</image:loc>
+      <image:title>Box Cricket at Turf 360 Noida</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://theturf360.com/football.jpg</image:loc>
+      <image:title>Football Futsal at Turf 360 Noida</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://theturf360.com/pickleball.jpeg</image:loc>
+      <image:title>Pickleball at Turf 360 Noida</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://theturf360.com/snooker.webp</image:loc>
+      <image:title>Snooker at Turf 360 Noida</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://theturf360.com/amenities</loc>
+    <lastmod>2026-02-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://theturf360.com/corporate</loc>
+    <lastmod>2026-02-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://theturf360.com/corporate-banner.jpeg</image:loc>
+      <image:title>Corporate Events at Turf 360 Noida</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://theturf360.com/events</loc>
+    <lastmod>2026-02-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://theturf360.com/gallery</loc>
+    <lastmod>2026-02-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://theturf360.com/contact</loc>
+    <lastmod>2026-02-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>

@@ -6,8 +6,11 @@ import Corporate from '../components/Corporate';
 import Gallery from '../components/Gallery';
 import InstagramFeed from '../components/InstagramFeed';
 import Contact from '../components/Contact';
+import { useSEO, seoConfig } from '../utils/seo';
 
 export default function HomePage() {
+  useSEO(seoConfig.home);
+
   return (
     <>
       <Hero />

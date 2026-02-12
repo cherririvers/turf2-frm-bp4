@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, MapPin, Clock, ChevronRight, Trophy, Phone, Users, IndianRupee, ImageIcon } from 'lucide-react';
 import PageHero from '../components/PageHero';
+import { useSEO, seoConfig } from '../utils/seo';
 
 type EventStatus = 'upcoming' | 'past';
 
@@ -256,6 +257,8 @@ function EventCard({ event, isReversed }: { event: TournamentEvent; isReversed: 
 }
 
 export default function EventsPage() {
+  useSEO(seoConfig.events);
+
   const upcomingEvents = events.filter(e => e.status === 'upcoming');
   const pastEvents = events.filter(e => e.status === 'past');
 

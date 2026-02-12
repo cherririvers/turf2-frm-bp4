@@ -14,6 +14,7 @@ import {
   Briefcase,
 } from 'lucide-react';
 import PageHero from '../components/PageHero';
+import { useSEO, seoConfig } from '../utils/seo';
 
 const benefits = [
   {
@@ -69,6 +70,8 @@ const packageFeatures = [
 const sports = ['Football / Futsal', 'Box Cricket', 'Pickleball', 'Snooker'];
 
 export default function CorporatePage() {
+  useSEO(seoConfig.corporate);
+
   return (
     <>
       <PageHero

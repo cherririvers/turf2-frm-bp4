@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { X, ChevronLeft, ChevronRight, Play, Instagram, ExternalLink } from 'lucide-react';
 import PageHero from '../components/PageHero';
+import { useSEO, seoConfig } from '../utils/seo';
 
 type GalleryItem = {
   src: string;
@@ -66,6 +67,8 @@ const galleryItems: GalleryItem[] = [
 const categories = ['All', 'Cricket', 'Pickleball', 'Football', 'Snooker', 'Events', 'Cafe'];
 
 export default function GalleryPage() {
+  useSEO(seoConfig.gallery);
+
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 

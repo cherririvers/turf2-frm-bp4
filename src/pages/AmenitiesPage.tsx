@@ -16,6 +16,7 @@ import {
   CheckCircle,
 } from 'lucide-react';
 import PageHero from '../components/PageHero';
+import { useSEO, seoConfig } from '../utils/seo';
 
 const amenities = [
   {
@@ -97,6 +98,8 @@ const timingFeatures = [
 ];
 
 export default function AmenitiesPage() {
+  useSEO(seoConfig.amenities);
+
   return (
     <>
       <PageHero

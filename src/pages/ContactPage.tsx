@@ -11,6 +11,7 @@ import {
   Navigation,
 } from 'lucide-react';
 import PageHero from '../components/PageHero';
+import { useSEO, seoConfig } from '../utils/seo';
 
 const sportOptions = [
   'Football / Futsal',
@@ -54,6 +55,8 @@ const contactMethods = [
 ];
 
 export default function ContactPage() {
+  useSEO(seoConfig.contact);
+
   const [formData, setFormData] = useState({
     name: '',
     phone: '',

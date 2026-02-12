@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Users, Timer, Trophy, Target, Dumbbell, Award } from 'lucide-react';
 import PageHero from '../components/PageHero';
+import { useSEO, seoConfig } from '../utils/seo';
 
 const sports = [
   {
@@ -66,6 +67,8 @@ const sports = [
 ];
 
 export default function SportsPage() {
+  useSEO(seoConfig.sports);
+
   return (
     <>
       <PageHero
