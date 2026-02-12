@@ -20,6 +20,7 @@ import {
   BlogPost,
   Author,
 } from '../data/blogData';
+import { parseMarkdown } from '../utils/markdownParser';
 
 function WhatsAppIcon({ className }: { className?: string }) {
   return (
@@ -57,7 +58,7 @@ export default function BlogPostPage() {
 
   if (!post || !author) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="animate-pulse text-gray-400">Loading...</div>
       </div>
     );
@@ -83,28 +84,30 @@ export default function BlogPostPage() {
     linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`,
   };
 
+  const parsedContent = parseMarkdown(post.content);
+
   return (
     <>
-      <div className="relative h-[50vh] min-h-[400px] bg-gray-900">
+      <div className="relative h-[50vh] min-h-[400px] lg:h-[60vh] bg-gray-900">
         <img
           src={post.featuredImage}
           alt={post.title}
-          className="w-full h-full object-cover opacity-60"
+          className="w-full h-full object-cover opacity-50"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/60 to-gray-900/30" />
 
-        <div className="absolute inset-0 flex flex-col justify-end pb-12">
+        <div className="absolute inset-0 flex flex-col justify-end pb-12 lg:pb-16">
           <div className="section-container">
             <Link
               to="/blog"
-              className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-6 transition-colors"
+              className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-6 transition-colors group"
             >
-              <ArrowLeft className="w-4 h-4" />
+              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
               Back to Blog
             </Link>
 
-            <div className="flex items-center gap-3 mb-4">
-              <span className="px-3 py-1 bg-emerald-600 text-white text-sm font-semibold rounded-full">
+            <div className="flex flex-wrap items-center gap-3 mb-4">
+              <span className="px-4 py-1.5 bg-emerald-600 text-white text-sm font-semibold rounded-full">
                 {post.category}
               </span>
               <span className="flex items-center gap-1.5 text-white/80 text-sm">
@@ -128,81 +131,59 @@ export default function BlogPostPage() {
         </div>
       </div>
 
-      <article className="py-12 bg-white">
+      <article className="py-12 lg:py-16 bg-white">
         <div className="section-container">
-          <div className="grid lg:grid-cols-12 gap-12">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
             <div className="lg:col-span-8">
-              <div className="flex items-center gap-4 mb-10 p-6 bg-gray-50 rounded-2xl">
-                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center flex-shrink-0">
+              <div className="flex items-center gap-4 mb-8 p-5 bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl border border-gray-100">
+                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center flex-shrink-0 shadow-lg shadow-emerald-500/20">
                   <User className="w-7 h-7 text-white" />
                 </div>
                 <div>
                   <p className="font-semibold text-gray-900">{author.name}</p>
-                  <p className="text-sm text-gray-600">{author.designation}</p>
+                  <p className="text-sm text-emerald-600">{author.designation}</p>
                 </div>
               </div>
 
               <div
-                className="prose prose-lg prose-gray max-w-none
-                  prose-headings:font-bold prose-headings:text-gray-900
-                  prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4
-                  prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
-                  prose-h4:text-lg prose-h4:mt-6 prose-h4:mb-2
-                  prose-p:text-gray-700 prose-p:leading-relaxed
-                  prose-a:text-emerald-600 prose-a:no-underline hover:prose-a:underline
-                  prose-strong:text-gray-900
-                  prose-ul:my-4 prose-li:text-gray-700
-                  prose-ol:my-4
-                  prose-blockquote:border-l-emerald-500 prose-blockquote:bg-gray-50 prose-blockquote:py-2 prose-blockquote:px-6 prose-blockquote:rounded-r-lg
-                  prose-table:border-collapse prose-th:bg-gray-100 prose-th:p-3 prose-td:p-3 prose-td:border prose-td:border-gray-200
-                "
-                dangerouslySetInnerHTML={{
-                  __html: post.content
-                    .split('\n')
-                    .map((line) => {
-                      if (line.startsWith('## '))
-                        return `<h2>${line.slice(3)}</h2>`;
-                      if (line.startsWith('### '))
-                        return `<h3>${line.slice(4)}</h3>`;
-                      if (line.startsWith('#### '))
-                        return `<h4>${line.slice(5)}</h4>`;
-                      if (line.startsWith('- '))
-                        return `<li>${line.slice(2)}</li>`;
-                      if (line.startsWith('**') && line.endsWith('**'))
-                        return `<p><strong>${line.slice(2, -2)}</strong></p>`;
-                      if (line.trim() === '---') return '<hr class="my-8" />';
-                      if (line.trim() === '') return '';
-                      if (line.startsWith('|')) {
-                        const cells = line.split('|').filter(Boolean);
-                        if (cells.every((c) => c.trim().match(/^-+$/))) return '';
-                        const tag = line.includes('---') ? 'th' : 'td';
-                        return `<tr>${cells.map((c) => `<${tag}>${c.trim()}</${tag}>`).join('')}</tr>`;
-                      }
-                      return `<p>${line}</p>`;
-                    })
-                    .join('\n'),
-                }}
+                className="article-content"
+                dangerouslySetInnerHTML={{ __html: parsedContent }}
               />
 
-              <div className="mt-10 pt-8 border-t border-gray-200">
+              <div className="mt-12 pt-8 border-t border-gray-200">
+                <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">Tags</h4>
                 <div className="flex flex-wrap gap-2">
                   {post.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-3 py-1.5 bg-gray-100 text-gray-700 text-sm rounded-full"
+                      className="px-4 py-2 bg-gray-100 text-gray-700 text-sm rounded-full hover:bg-emerald-50 hover:text-emerald-700 transition-colors cursor-default"
                     >
                       #{tag}
                     </span>
                   ))}
                 </div>
               </div>
+
+              <div className="mt-10 p-6 bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl border border-emerald-100">
+                <div className="flex items-start gap-4">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center flex-shrink-0 shadow-lg shadow-emerald-500/20">
+                    <User className="w-8 h-8 text-white" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-emerald-600 font-medium mb-1">Written by</p>
+                    <p className="font-bold text-gray-900 text-lg">{author.name}</p>
+                    <p className="text-sm text-gray-600 mb-3">{author.designation}</p>
+                    <p className="text-gray-600 text-sm leading-relaxed">{author.bio}</p>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <aside className="lg:col-span-4">
-              <div className="sticky top-24 space-y-8">
-                <div className="bg-gray-50 rounded-2xl p-6">
+              <div className="sticky top-24 space-y-6">
+                <div className="bg-white rounded-2xl p-6 shadow-lg shadow-gray-200/50 border border-gray-100">
                   <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                    <Share2 className="w-5 h-5" />
+                    <Share2 className="w-5 h-5 text-emerald-600" />
                     Share this article
                   </h3>
                   <div className="flex gap-3">
@@ -210,7 +191,7 @@ export default function BlogPostPage() {
                       href={shareLinks.whatsapp}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-12 h-12 flex items-center justify-center rounded-full bg-green-500 text-white hover:bg-green-600 transition-colors"
+                      className="w-12 h-12 flex items-center justify-center rounded-xl bg-green-500 text-white hover:bg-green-600 transition-all hover:scale-105 shadow-md shadow-green-500/20"
                       aria-label="Share on WhatsApp"
                     >
                       <WhatsAppIcon className="w-5 h-5" />
@@ -219,7 +200,7 @@ export default function BlogPostPage() {
                       href={shareLinks.twitter}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-12 h-12 flex items-center justify-center rounded-full bg-gray-900 text-white hover:bg-gray-800 transition-colors"
+                      className="w-12 h-12 flex items-center justify-center rounded-xl bg-gray-900 text-white hover:bg-gray-800 transition-all hover:scale-105 shadow-md shadow-gray-900/20"
                       aria-label="Share on X/Twitter"
                     >
                       <Twitter className="w-5 h-5" />
@@ -228,17 +209,17 @@ export default function BlogPostPage() {
                       href={shareLinks.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-12 h-12 flex items-center justify-center rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+                      className="w-12 h-12 flex items-center justify-center rounded-xl bg-blue-600 text-white hover:bg-blue-700 transition-all hover:scale-105 shadow-md shadow-blue-600/20"
                       aria-label="Share on LinkedIn"
                     >
                       <Linkedin className="w-5 h-5" />
                     </a>
                     <button
                       onClick={handleCopyLink}
-                      className={`w-12 h-12 flex items-center justify-center rounded-full transition-colors ${
+                      className={`w-12 h-12 flex items-center justify-center rounded-xl transition-all hover:scale-105 ${
                         copied
-                          ? 'bg-emerald-500 text-white'
-                          : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                          ? 'bg-emerald-500 text-white shadow-md shadow-emerald-500/20'
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                       }`}
                       aria-label="Copy link"
                     >
@@ -251,31 +232,37 @@ export default function BlogPostPage() {
                   </div>
                 </div>
 
-                <div className="bg-emerald-600 rounded-2xl p-6 text-white">
-                  <h3 className="font-semibold mb-2">Ready to Play?</h3>
-                  <p className="text-emerald-100 text-sm mb-4">
-                    Book your slot at Turf 360 and experience premium sports facilities.
+                <div className="bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-2xl p-6 text-white shadow-xl shadow-emerald-600/20">
+                  <h3 className="font-bold text-xl mb-2">Ready to Play?</h3>
+                  <p className="text-emerald-100 text-sm mb-5 leading-relaxed">
+                    Book your slot at Turf 360 and experience premium sports facilities in Noida.
                   </p>
                   <Link
                     to="/contact"
-                    className="inline-flex items-center gap-2 bg-white text-emerald-600 font-semibold px-5 py-2.5 rounded-full hover:bg-emerald-50 transition-colors"
+                    className="inline-flex items-center gap-2 bg-white text-emerald-600 font-semibold px-6 py-3 rounded-xl hover:bg-emerald-50 transition-all hover:shadow-lg group"
                   >
                     Book Now
-                    <ChevronRight className="w-4 h-4" />
+                    <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </div>
 
-                <div className="bg-gray-50 rounded-2xl p-6">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center">
-                      <User className="w-8 h-8 text-white" />
-                    </div>
-                    <div>
-                      <p className="font-semibold text-gray-900">{author.name}</p>
-                      <p className="text-sm text-emerald-600">{author.designation}</p>
-                    </div>
+                <div className="bg-gray-50 rounded-2xl overflow-hidden">
+                  <img
+                    src="https://images.pexels.com/photos/3621104/pexels-photo-3621104.jpeg?auto=compress&cs=tinysrgb&w=600"
+                    alt="Sports at Turf 360"
+                    className="w-full h-40 object-cover"
+                  />
+                  <div className="p-5">
+                    <h4 className="font-semibold text-gray-900 mb-2">Explore Our Facilities</h4>
+                    <p className="text-sm text-gray-600 mb-4">Football, Cricket, Pickleball, Snooker and more.</p>
+                    <Link
+                      to="/gallery"
+                      className="text-emerald-600 font-medium text-sm hover:text-emerald-700 inline-flex items-center gap-1"
+                    >
+                      View Gallery
+                      <ChevronRight className="w-4 h-4" />
+                    </Link>
                   </div>
-                  <p className="text-gray-600 text-sm">{author.bio}</p>
                 </div>
               </div>
             </aside>
@@ -286,7 +273,16 @@ export default function BlogPostPage() {
       {relatedPosts.length > 0 && (
         <section className="py-16 bg-gray-50">
           <div className="section-container">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8">Related Articles</h2>
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="text-2xl font-bold text-gray-900">Related Articles</h2>
+              <Link
+                to="/blog"
+                className="text-emerald-600 font-medium hover:text-emerald-700 inline-flex items-center gap-1"
+              >
+                View All
+                <ChevronRight className="w-4 h-4" />
+              </Link>
+            </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {relatedPosts.map((relatedPost) => (
                 <BlogCard key={relatedPost.id} post={relatedPost} />
