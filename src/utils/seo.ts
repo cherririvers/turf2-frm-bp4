@@ -10,7 +10,21 @@ interface SEOProps {
   noIndex?: boolean;
 }
 
-const BASE_URL = 'https://theturf360.com';
+interface ArticleSEOProps extends SEOProps {
+  publishDate: string;
+  modifiedDate?: string;
+  authorName: string;
+  category: string;
+  tags: string[];
+  readTime: number;
+}
+
+interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
+export const BASE_URL = 'https://theturf360.com';
 const DEFAULT_IMAGE = `${BASE_URL}/cricket.jpeg`;
 const SITE_NAME = 'Turf 360';
 
@@ -40,6 +54,7 @@ export function useSEO({
     updateMetaTag('og:type', ogType, 'property');
     updateMetaTag('og:site_name', SITE_NAME, 'property');
 
+    updateMetaTag('twitter:card', 'summary_large_image', 'name');
     updateMetaTag('twitter:title', fullTitle, 'name');
     updateMetaTag('twitter:description', description, 'name');
     updateMetaTag('twitter:image', ogImage, 'name');
@@ -49,8 +64,124 @@ export function useSEO({
       updateCanonicalLink(canonical);
     }
 
-    return () => {};
+    return () => {
+      removeStructuredData('article-schema');
+      removeStructuredData('breadcrumb-schema');
+    };
   }, [title, description, keywords, canonical, ogImage, ogType, noIndex]);
+}
+
+export function useArticleSEO({
+  title,
+  description,
+  keywords,
+  canonical,
+  ogImage = DEFAULT_IMAGE,
+  publishDate,
+  modifiedDate,
+  authorName,
+  category,
+  tags,
+  readTime,
+}: ArticleSEOProps) {
+  useEffect(() => {
+    const fullTitle = title.includes('Turf 360') ? title : `${title} | Turf 360`;
+    document.title = fullTitle;
+
+    updateMetaTag('description', description);
+    if (keywords) {
+      updateMetaTag('keywords', keywords);
+    }
+    updateMetaTag('robots', 'index, follow');
+
+    updateMetaTag('og:title', fullTitle, 'property');
+    updateMetaTag('og:description', description, 'property');
+    updateMetaTag('og:url', canonical || BASE_URL, 'property');
+    updateMetaTag('og:image', ogImage, 'property');
+    updateMetaTag('og:type', 'article', 'property');
+    updateMetaTag('og:site_name', SITE_NAME, 'property');
+
+    updateMetaTag('article:published_time', publishDate, 'property');
+    if (modifiedDate) {
+      updateMetaTag('article:modified_time', modifiedDate, 'property');
+    }
+    updateMetaTag('article:author', authorName, 'property');
+    updateMetaTag('article:section', category, 'property');
+    tags.forEach((tag, index) => {
+      updateMetaTag(`article:tag:${index}`, tag, 'property');
+    });
+
+    updateMetaTag('twitter:card', 'summary_large_image', 'name');
+    updateMetaTag('twitter:title', fullTitle, 'name');
+    updateMetaTag('twitter:description', description, 'name');
+    updateMetaTag('twitter:image', ogImage, 'name');
+    updateMetaTag('twitter:url', canonical || BASE_URL, 'name');
+    updateMetaTag('twitter:label1', 'Written by', 'name');
+    updateMetaTag('twitter:data1', authorName, 'name');
+    updateMetaTag('twitter:label2', 'Reading time', 'name');
+    updateMetaTag('twitter:data2', `${readTime} min read`, 'name');
+
+    if (canonical) {
+      updateCanonicalLink(canonical);
+    }
+
+    const articleSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: title,
+      description: description,
+      image: ogImage,
+      author: {
+        '@type': 'Person',
+        name: authorName,
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: SITE_NAME,
+        logo: {
+          '@type': 'ImageObject',
+          url: `${BASE_URL}/logo.jpeg`,
+        },
+      },
+      datePublished: publishDate,
+      dateModified: modifiedDate || publishDate,
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': canonical,
+      },
+      articleSection: category,
+      keywords: tags.join(', '),
+      wordCount: readTime * 200,
+      timeRequired: `PT${readTime}M`,
+    };
+
+    addStructuredData('article-schema', articleSchema);
+
+    return () => {
+      removeStructuredData('article-schema');
+    };
+  }, [title, description, keywords, canonical, ogImage, publishDate, modifiedDate, authorName, category, tags, readTime]);
+}
+
+export function useBreadcrumbSEO(items: BreadcrumbItem[]) {
+  useEffect(() => {
+    const breadcrumbSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: items.map((item, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: item.name,
+        item: item.url,
+      })),
+    };
+
+    addStructuredData('breadcrumb-schema', breadcrumbSchema);
+
+    return () => {
+      removeStructuredData('breadcrumb-schema');
+    };
+  }, [items]);
 }
 
 function updateMetaTag(name: string, content: string, attribute: 'name' | 'property' = 'name') {
@@ -71,6 +202,22 @@ function updateCanonicalLink(href: string) {
     document.head.appendChild(link);
   }
   link.href = href;
+}
+
+function addStructuredData(id: string, data: object) {
+  removeStructuredData(id);
+  const script = document.createElement('script');
+  script.id = id;
+  script.type = 'application/ld+json';
+  script.textContent = JSON.stringify(data);
+  document.head.appendChild(script);
+}
+
+function removeStructuredData(id: string) {
+  const existing = document.getElementById(id);
+  if (existing) {
+    existing.remove();
+  }
 }
 
 export const seoConfig = {
@@ -122,5 +269,11 @@ export const seoConfig = {
     keywords: "sports blog noida, football tips, cricket guide, pickleball beginners, team building events, sports fitness, turf 360 blog, noida sports news, box cricket rules, futsal tips",
     canonical: `${BASE_URL}/blog`,
     ogType: 'blog',
+  },
+  brewNPlay: {
+    title: "Brew N Play Cafe at Turf 360 - Food, Drinks & Sports in Noida",
+    description: "Enjoy delicious food, refreshing beverages and watch live sports at Brew N Play cafe inside Turf 360. Perfect spot for post-game meals with friends and family in Sector 150, Noida.",
+    keywords: "sports cafe noida, brew n play, turf 360 cafe, cafe sector 150 noida, sports bar noida, food near turf noida, post game meals noida",
+    canonical: `${BASE_URL}/brew-n-play`,
   },
 };

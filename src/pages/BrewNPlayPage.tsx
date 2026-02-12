@@ -6,18 +6,17 @@ import CategoryTabs from '../components/cafe/CategoryTabs';
 import FloatingCartButton from '../components/cafe/FloatingCartButton';
 import CartDrawer from '../components/cafe/CartDrawer';
 import { useCart } from '../context/CartContext';
+import { useSEO, seoConfig } from '../utils/seo';
 
 const WHATSAPP_NUMBER = '918076714176';
 
 export default function BrewNPlayPage() {
+  useSEO(seoConfig.brewNPlay);
+
   const [activeCategory, setActiveCategory] = useState(menuCategories[0].id);
   const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const isScrollingRef = useRef(false);
   const { setIsCartOpen } = useCart();
-
-  useEffect(() => {
-    document.title = 'Brew N Play - Food & Beverages | The Turf 360';
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {

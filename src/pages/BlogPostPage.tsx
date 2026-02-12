@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import {
   Calendar,
@@ -11,6 +11,7 @@ import {
   Link as LinkIcon,
   Check,
   ChevronRight,
+  Home,
 } from 'lucide-react';
 import BlogCard from '../components/blog/BlogCard';
 import {
@@ -21,6 +22,7 @@ import {
   Author,
 } from '../data/blogData';
 import { parseMarkdown } from '../utils/markdownParser';
+import { useArticleSEO, useBreadcrumbSEO, BASE_URL } from '../utils/seo';
 
 function WhatsAppIcon({ className }: { className?: string }) {
   return (
@@ -33,30 +35,49 @@ function WhatsAppIcon({ className }: { className?: string }) {
 export default function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
-  const [post, setPost] = useState<BlogPost | null>(null);
-  const [author, setAuthor] = useState<Author | null>(null);
   const [copied, setCopied] = useState(false);
 
-  useEffect(() => {
-    if (slug) {
-      const foundPost = getBlogPostBySlug(slug);
-      if (foundPost) {
-        setPost(foundPost);
-        const foundAuthor = getAuthorById(foundPost.authorId);
-        if (foundAuthor) setAuthor(foundAuthor);
+  const post = useMemo(() => {
+    if (!slug) return null;
+    return getBlogPostBySlug(slug);
+  }, [slug]);
 
-        document.title = `${foundPost.title} | Turf 360 Blog`;
-        const metaDescription = document.querySelector('meta[name="description"]');
-        if (metaDescription) {
-          metaDescription.setAttribute('content', foundPost.excerpt);
-        }
-      } else {
-        navigate('/blog', { replace: true });
-      }
+  const author = useMemo(() => {
+    if (!post) return null;
+    return getAuthorById(post.authorId);
+  }, [post]);
+
+  useArticleSEO({
+    title: post?.title || 'Blog Post',
+    description: post?.excerpt || '',
+    keywords: post?.tags.join(', '),
+    canonical: post ? `${BASE_URL}/blog/${post.slug}` : undefined,
+    ogImage: post?.featuredImage,
+    publishDate: post?.publishDate || '',
+    authorName: author?.name || 'Turf 360 Team',
+    category: post?.category || 'Sports',
+    tags: post?.tags || [],
+    readTime: post?.readTime || 5,
+  });
+
+  useBreadcrumbSEO([
+    { name: 'Home', url: BASE_URL },
+    { name: 'Blog', url: `${BASE_URL}/blog` },
+    { name: post?.title || 'Article', url: post ? `${BASE_URL}/blog/${post.slug}` : '' },
+  ]);
+
+  if (!slug || !post) {
+    if (slug && !post) {
+      navigate('/blog', { replace: true });
     }
-  }, [slug, navigate]);
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="animate-pulse text-gray-400">Loading...</div>
+      </div>
+    );
+  }
 
-  if (!post || !author) {
+  if (!author) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="animate-pulse text-gray-400">Loading...</div>
@@ -98,9 +119,25 @@ export default function BlogPostPage() {
 
         <div className="absolute inset-0 flex flex-col justify-end pb-12 lg:pb-16">
           <div className="section-container">
+            <nav aria-label="Breadcrumb" className="mb-6">
+              <ol className="flex items-center gap-2 text-sm text-white/70">
+                <li>
+                  <Link to="/" className="hover:text-white transition-colors flex items-center gap-1">
+                    <Home className="w-3.5 h-3.5" />
+                    Home
+                  </Link>
+                </li>
+                <li className="text-white/50">/</li>
+                <li>
+                  <Link to="/blog" className="hover:text-white transition-colors">Blog</Link>
+                </li>
+                <li className="text-white/50">/</li>
+                <li className="text-white truncate max-w-[200px]">{post.title}</li>
+              </ol>
+            </nav>
             <Link
               to="/blog"
-              className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-6 transition-colors group"
+              className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-4 transition-colors group"
             >
               <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
               Back to Blog
