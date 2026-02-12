@@ -9,6 +9,8 @@ import EventsPage from './pages/EventsPage';
 import GalleryPage from './pages/GalleryPage';
 import ContactPage from './pages/ContactPage';
 import BrewNPlayPage from './pages/BrewNPlayPage';
+import BlogPage from './pages/BlogPage';
+import BlogPostPage from './pages/BlogPostPage';
 import ScrollToTop from './components/ScrollToTop';
 
 function App() {
@@ -26,6 +28,8 @@ function App() {
             <Route path="gallery" element={<GalleryPage />} />
             <Route path="contact" element={<ContactPage />} />
             <Route path="cafe" element={<BrewNPlayPage />} />
+            <Route path="blog" element={<BlogPage />} />
+            <Route path="blog/:slug" element={<BlogPostPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

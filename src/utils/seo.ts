@@ -116,4 +116,11 @@ export const seoConfig = {
     keywords: "turf 360 contact, book turf noida, sports booking sector 150, turf 360 phone number, turf 360 location, turf 360 address, book sports ground noida",
     canonical: `${BASE_URL}/contact`,
   },
+  blog: {
+    title: "Turf 360 Blog - Sports Tips, Fitness Guides & Local Noida Sports News",
+    description: "Read expert sports tips, fitness guides, and local Noida sports news on the Turf 360 blog. Learn about football, cricket, pickleball, and more from our experienced team.",
+    keywords: "sports blog noida, football tips, cricket guide, pickleball beginners, team building events, sports fitness, turf 360 blog, noida sports news, box cricket rules, futsal tips",
+    canonical: `${BASE_URL}/blog`,
+    ogType: 'blog',
+  },
 };

@@ -9,6 +9,7 @@ const quickLinks = [
   { name: 'Corporate', href: '/corporate' },
   { name: 'Events', href: '/events' },
   { name: 'Gallery', href: '/gallery' },
+  { name: 'Blog', href: '/blog' },
   { name: 'Contact', href: '/contact' },
 ];
 

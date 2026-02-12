@@ -14,6 +14,7 @@ const mainNavLinks = [
 const moreLinks = [
   { name: 'Corporate', href: '/corporate' },
   { name: 'Events', href: '/events' },
+  { name: 'Blog', href: '/blog' },
 ];
 
 export default function Navbar() {
