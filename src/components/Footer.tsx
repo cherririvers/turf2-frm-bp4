@@ -4,6 +4,7 @@ import { MapPin, Phone, Mail, Instagram, ArrowUp } from 'lucide-react';
 const quickLinks = [
   { name: 'Home', href: '/' },
   { name: 'Sports', href: '/sports' },
+  { name: 'Cafe', href: '/cafe' },
   { name: 'Amenities', href: '/amenities' },
   { name: 'Corporate', href: '/corporate' },
   { name: 'Events', href: '/events' },
@@ -24,7 +25,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-charcoal-950 text-white">
+    <footer className="bg-charcoal-950 text-white pb-20 lg:pb-0">
       <div className="section-container py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
