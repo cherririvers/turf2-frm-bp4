@@ -24,9 +24,7 @@ export default function Hero() {
         </div>
 
         <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 animate-slide-up">
-          Sports - Imperative
-          <br />
-          <span className="text-gradient">To A Happy Life</span>
+          Noida's <span className="text-gradient">Premier Sports Arena</span>
         </h1>
 
         <p className="text-lg md:text-xl text-charcoal-200 max-w-2xl mx-auto mb-8 animate-slide-up">
