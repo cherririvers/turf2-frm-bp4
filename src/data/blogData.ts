@@ -577,7 +577,7 @@ Pickleball's beauty lies in its simplicity and accessibility. Within your first 
     `,
     category: 'Sports Tips',
     tags: ['pickleball', 'beginners guide', 'rules', 'equipment', 'how to play'],
-    featuredImage: 'https://images.pexels.com/photos/8224057/pexels-photo-8224057.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    featuredImage: 'https://images.pexels.com/photos/17299534/pexels-photo-17299534.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     authorId: 'yash-kuntal',
     publishDate: '2026-02-01',
     readTime: 9,
