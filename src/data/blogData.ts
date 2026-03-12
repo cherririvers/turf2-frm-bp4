@@ -958,7 +958,7 @@ Ready to experience these benefits yourself? Lace up your boots and join us at T
     `,
     category: 'Health & Fitness',
     tags: ['health benefits', 'football fitness', 'exercise', 'mental health', 'cardiovascular'],
-    featuredImage: 'https://images.pexels.com/photos/1667583/pexels-photo-1667583.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    featuredImage: 'https://images.pexels.com/photos/2966245/pexels-photo-2966245.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     authorId: 'nirupama-rana',
     publishDate: '2026-01-25',
     readTime: 8,
