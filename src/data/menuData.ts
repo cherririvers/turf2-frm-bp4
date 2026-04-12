@@ -17,6 +17,7 @@ export interface MenuCategory {
   items: MenuItem[];
 }
 
+const cafe = (name: string) => `/turf360-cafe-images/${name}`;
 const pexels = (id: number) =>
   `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=400`;
 
@@ -26,8 +27,8 @@ export const menuCategories: MenuCategory[] = [
     name: 'Turf Special',
     icon: 'Star',
     items: [
-      { id: 'ts-1', name: 'Peanut Banana Milk Shake', price: 150, category: 'turf-special', image: pexels(4112870), isSpecial: true, isCold: true },
-      { id: 'ts-2', name: 'Fruit Bowl', price: 150, category: 'turf-special', image: pexels(1128678), isSpecial: true },
+      { id: 'ts-1', name: 'Peanut Banana Milk Shake', price: 150, category: 'turf-special', image: cafe('peanutbananamilkshakewebp'), isSpecial: true, isCold: true },
+      { id: 'ts-2', name: 'Fruit Bowl', price: 150, category: 'turf-special', image: cafe('fruitball.jpeg'), isSpecial: true },
     ],
   },
   {
@@ -35,17 +36,17 @@ export const menuCategories: MenuCategory[] = [
     name: 'Hot & Cold Beverages',
     icon: 'Coffee',
     items: [
-      { id: 'bv-1', name: 'Tea', price: 25, category: 'beverages', image: pexels(1417945), isHot: true },
-      { id: 'bv-2', name: 'Hot Coffee', price: 60, category: 'beverages', image: pexels(312418), isHot: true },
-      { id: 'bv-3', name: 'Hot Chocolate', price: 80, category: 'beverages', image: pexels(3551717), isHot: true },
+      { id: 'bv-1', name: 'Tea', price: 25, category: 'beverages', image: cafe('tea.webp'), isHot: true },
+      { id: 'bv-2', name: 'Hot Coffee', price: 60, category: 'beverages', image: cafe('hotcoffee.avif'), isHot: true },
+      { id: 'bv-3', name: 'Hot Chocolate', price: 80, category: 'beverages', image: cafe('hotchocolate.jpg'), isHot: true },
       { id: 'bv-4', name: 'Cold Coffee', price: 80, category: 'beverages', image: pexels(2615323), isCold: true },
       { id: 'bv-5', name: 'Caramel Coffee', price: 100, category: 'beverages', image: pexels(214333), isCold: true },
       { id: 'bv-6', name: 'Hazelnut Coffee', price: 100, category: 'beverages', image: pexels(851555), isCold: true },
       { id: 'bv-7', name: 'Chocolate Shake', price: 90, category: 'beverages', image: pexels(11381485), isCold: true },
-      { id: 'bv-8', name: 'Oreo Shake', price: 100, category: 'beverages', image: pexels(2424034), isCold: true },
-      { id: 'bv-9', name: 'KitKat Shake', price: 100, category: 'beverages', image: pexels(17558646), isCold: true },
-      { id: 'bv-10', name: 'Iced Tea', price: 80, category: 'beverages', image: pexels(1484678), isCold: true },
-      { id: 'bv-11', name: 'Mojito', price: 90, category: 'beverages', image: pexels(4021983), isCold: true },
+      { id: 'bv-8', name: 'Oreo Shake', price: 100, category: 'beverages', image: cafe('oreoshake.webp'), isCold: true },
+      { id: 'bv-9', name: 'KitKat Shake', price: 100, category: 'beverages', image: cafe('Kit-Kat-Milkshake-webp'), isCold: true },
+      { id: 'bv-10', name: 'Iced Tea', price: 80, category: 'beverages', image: cafe('iced_tea.webp'), isCold: true },
+      { id: 'bv-11', name: 'Mojito', price: 90, category: 'beverages', image: cafe('mojito.jpeg'), isCold: true },
     ],
   },
   {
@@ -53,10 +54,10 @@ export const menuCategories: MenuCategory[] = [
     name: 'Pizza',
     icon: 'Pizza',
     items: [
-      { id: 'pz-1', name: 'Margherita', price: 120, category: 'pizza', image: pexels(10802332) },
+      { id: 'pz-1', name: 'Margherita', price: 120, category: 'pizza', image: cafe('margherita.jpeg') },
       { id: 'pz-2', name: 'Exotic Vegetable', price: 150, category: 'pizza', image: pexels(2260200) },
-      { id: 'pz-3', name: 'Farmhouse', price: 160, category: 'pizza', image: pexels(2147491) },
-      { id: 'pz-4', name: 'Peppy Paneer', price: 180, category: 'pizza', image: pexels(263041) },
+      { id: 'pz-3', name: 'Farmhouse', price: 160, category: 'pizza', image: cafe('farmhousepizza.webp') },
+      { id: 'pz-4', name: 'Peppy Paneer', price: 180, category: 'pizza', image: cafe('peppypaneer.jpeg') },
     ],
   },
   {
@@ -64,9 +65,9 @@ export const menuCategories: MenuCategory[] = [
     name: 'Pasta',
     icon: 'Utensils',
     items: [
-      { id: 'ps-1', name: 'Penne Alfredo', price: 150, category: 'pasta', image: pexels(1487511) },
-      { id: 'ps-2', name: 'Penne Arrabbiata', price: 150, category: 'pasta', image: pexels(1460872) },
-      { id: 'ps-3', name: 'Penne Pink Sauce', price: 150, category: 'pasta', image: pexels(1437267) },
+      { id: 'ps-1', name: 'Penne Alfredo', price: 150, category: 'pasta', image: cafe('Penne-Alfredo.jpg') },
+      { id: 'ps-2', name: 'Penne Arrabbiata', price: 150, category: 'pasta', image: cafe('Penne-with-arrabbiata-sauce-4.webp') },
+      { id: 'ps-3', name: 'Penne Pink Sauce', price: 150, category: 'pasta', image: cafe('Pink-Sauce-Pasta.jpg') },
     ],
   },
   {
@@ -74,12 +75,12 @@ export const menuCategories: MenuCategory[] = [
     name: 'Chinese',
     icon: 'Soup',
     items: [
-      { id: 'ch-1', name: 'Veg Noodles', price: 120, category: 'chinese', image: pexels(2347311) },
-      { id: 'ch-2', name: 'Chilli Garlic Noodles', price: 130, category: 'chinese', image: pexels(2133989) },
-      { id: 'ch-3', name: 'Spring Rolls', price: 120, category: 'chinese', image: pexels(218769) },
-      { id: 'ch-4', name: 'Chilli Potato', price: 130, category: 'chinese', image: pexels(3727185) },
-      { id: 'ch-5', name: 'Honey Chilli Potato', price: 150, category: 'chinese', image: pexels(1893556) },
-      { id: 'ch-6', name: 'Chilli Paneer', price: 180, category: 'chinese', image: pexels(9609838) },
+      { id: 'ch-1', name: 'Veg Noodles', price: 120, category: 'chinese', image: cafe('Veg-Hakka-Noodles.webp') },
+      { id: 'ch-2', name: 'Chilli Garlic Noodles', price: 130, category: 'chinese', image: cafe('chiligarlic_noodle.jpg') },
+      { id: 'ch-3', name: 'Spring Rolls', price: 120, category: 'chinese', image: cafe('Spring-Roll-Feature.jpg') },
+      { id: 'ch-4', name: 'Chilli Potato', price: 130, category: 'chinese', image: cafe('chili-potato.jpg') },
+      { id: 'ch-5', name: 'Honey Chilli Potato', price: 150, category: 'chinese', image: cafe('honeychilipotato.jpg') },
+      { id: 'ch-6', name: 'Chilli Paneer', price: 180, category: 'chinese', image: cafe('chilipaneer.webp') },
     ],
   },
   {
@@ -87,10 +88,10 @@ export const menuCategories: MenuCategory[] = [
     name: 'Chow Bowls',
     icon: 'Salad',
     items: [
-      { id: 'cb-1', name: 'Hot and Sour', price: 90, category: 'chow-bowls', image: pexels(12561886) },
-      { id: 'cb-2', name: 'Manchow', price: 90, category: 'chow-bowls', image: pexels(1907227) },
-      { id: 'cb-3', name: 'Tomato', price: 90, category: 'chow-bowls', image: pexels(8599737) },
-      { id: 'cb-4', name: 'Add-on Noodles', price: 30, category: 'chow-bowls', image: pexels(23833914), isAddOn: true },
+      { id: 'cb-1', name: 'Hot and Sour', price: 90, category: 'chow-bowls', image: cafe('chinese-hot-and-sour-soup-1.jpg') },
+      { id: 'cb-2', name: 'Manchow', price: 90, category: 'chow-bowls', image: cafe('chowbowl.jpg') },
+      { id: 'cb-3', name: 'Tomato', price: 90, category: 'chow-bowls', image: cafe('tomato_chow_chow.webp') },
+      { id: 'cb-4', name: 'Add-on Noodles', price: 30, category: 'chow-bowls', image: cafe('add_on_noodle.webp'), isAddOn: true },
     ],
   },
   {
@@ -98,8 +99,8 @@ export const menuCategories: MenuCategory[] = [
     name: 'Momos',
     icon: 'CircleDot',
     items: [
-      { id: 'mm-1', name: 'Vegetable Momos', price: 80, category: 'momos', image: pexels(6646069) },
-      { id: 'mm-2', name: 'Paneer Momos', price: 100, category: 'momos', image: pexels(5409010) },
+      { id: 'mm-1', name: 'Vegetable Momos', price: 80, category: 'momos', image: cafe('vegetablemomos.jpeg') },
+      { id: 'mm-2', name: 'Paneer Momos', price: 100, category: 'momos', image: cafe('paneermomos.jpg') },
     ],
   },
   {
@@ -107,11 +108,11 @@ export const menuCategories: MenuCategory[] = [
     name: 'Sandwich',
     icon: 'Sandwich',
     items: [
-      { id: 'sw-1', name: 'Veg Grilled', price: 120, category: 'sandwich', image: pexels(1647163) },
-      { id: 'sw-2', name: 'Cold Veg', price: 100, category: 'sandwich', image: pexels(7729372) },
-      { id: 'sw-3', name: 'Tandoori Paneer', price: 150, category: 'sandwich', image: pexels(5419207) },
-      { id: 'sw-4', name: 'Cheese n Corn', price: 130, category: 'sandwich', image: pexels(14941252) },
-      { id: 'sw-5', name: 'Pizza Sandwich', price: 140, category: 'sandwich', image: pexels(17498978) },
+      { id: 'sw-1', name: 'Veg Grilled', price: 120, category: 'sandwich', image: cafe('veggrilledsandwich.webp') },
+      { id: 'sw-2', name: 'Cold Veg', price: 100, category: 'sandwich', image: cafe('coldvegsandwich.jpg') },
+      { id: 'sw-3', name: 'Tandoori Paneer', price: 150, category: 'sandwich', image: cafe('Tandoori-Paneer-Sandwich.jpg') },
+      { id: 'sw-4', name: 'Cheese n Corn', price: 130, category: 'sandwich', image: cafe('cheese_n_corn_sandwich.jpg') },
+      { id: 'sw-5', name: 'Pizza Sandwich', price: 140, category: 'sandwich', image: cafe('pizzasandwich.jpg') },
     ],
   },
   {
@@ -119,9 +120,9 @@ export const menuCategories: MenuCategory[] = [
     name: 'Burger',
     icon: 'Beef',
     items: [
-      { id: 'bg-1', name: 'Aloo Tikki Burger', price: 50, category: 'burger', image: pexels(1639557) },
-      { id: 'bg-2', name: 'Veggie Burger', price: 80, category: 'burger', image: pexels(18713424) },
-      { id: 'bg-3', name: 'Tandoori Paneer Burger', price: 120, category: 'burger', image: pexels(70497) },
+      { id: 'bg-1', name: 'Aloo Tikki Burger', price: 50, category: 'burger', image: cafe('aalootikkiburger.jpg') },
+      { id: 'bg-2', name: 'Veggie Burger', price: 80, category: 'burger', image: cafe('burger-recipe-1.webp') },
+      { id: 'bg-3', name: 'Tandoori Paneer Burger', price: 120, category: 'burger', image: cafe('tandooripaneerburger.jpeg') },
       { id: 'bg-4', name: 'Add-on Cheese Slice', price: 20, category: 'burger', image: pexels(821365), isAddOn: true },
     ],
   },
